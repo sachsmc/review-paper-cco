@@ -1,0 +1,19 @@
+---
+title: Statistical Principles for Omics-based Clinical Trials
+author:
+- name: Michael C Sachs
+  affiliation: National Cancer Institute
+  email: michael.sachs@nih.gov
+- name: Lisa McShane
+  affiliation: National Cancer Institute
+  email: McShaneL@CTEP.NCI.NIH.gov
+date: September 2014
+abstract: Loren ipsum blah blah blah
+bibliography: ../Background/bookchapter.bib
+output: pdf_document
+---
+
+Introduction
+==============
+
+Text 
