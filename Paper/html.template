@@ -70,7 +70,7 @@ margin-left: -160px;
 </style>
 
 <header id="follow">
-<a href="http://github.com/sachsmc/review-paper-cco/blob/Paper/review-paper-cco.md">Edit on github</a>
+<a href="//github.com/sachsmc/review-paper-cco/blob/gh-pages/Paper/review-paper-cco.md">Edit on github</a>
 </header>
 
 $if(abstract)$
