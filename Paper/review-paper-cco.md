@@ -9,7 +9,7 @@ author:
   email: McShaneL@CTEP.NCI.NIH.gov
 date: September 2014
 abstract: 'High-throughput techologies enable the measurement of a large number of molecular characteristics from a small tissue sample. High-dimensional molecular information (referred to as omics data) offers the possibility of predicting the future outcome of a patient (prognosis) and predicting the likely response to a specific treatment (prediction). Embedded in the vast amount of data is the hope that there exists some signal that will enable practicioners to deliver therapy personalized to the molecular profile of a tumor, thereby improving health outcomes. The challenges are to determine that the omics assays are valid and reproducible in a clinical setting, to develop a valid and optimal omics-based test that algorithmically determines the optimal treatment regime, to evaluate that test in a powerful and unbiased manner, and finally to demonstrate clinical utility: that the test under study improves clinical outcome as compared to not using the test. We review the statistical considerations involved in each of these stages, specifically dealing with the challenges of high-dimensional, omics data.'
-keywords: genomics; personalized medidcine; predictive biomarker; statistics
+keywords: genomics; personalized medicine; predictive biomarker; statistics
 ...
 
 Introduction
