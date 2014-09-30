@@ -1,6 +1,6 @@
 ###This is a draft. Please do not cite without my permission. 
 
-Read the draft [here][http://sachsmc.github.io/review-paper-cco] and send a pull request to contribute. 
+Read the draft [here](http://sachsmc.github.io/review-paper-cco) and send a pull request to contribute. 
 
 ### License
 

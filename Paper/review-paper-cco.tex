@@ -6,13 +6,13 @@
 
 \title{\bigskip \bigskip Statistical Principles for Omics-based Clinical Trials}
 
-%\author{true\\true}
+%\author{true}
 
-\author{\Large Michael C Sachs\vspace{0.05in} \\ \normalsize\emph{National Cancer Institute} \\ \footnotesize \url{maito:michael.sachs@nih.gov}\vspace*{0.2in}\\  \and \Large Lisa M McShane\vspace{0.05in} \\ \normalsize\emph{National Cancer Institute} \\ \footnotesize \url{maito:McShaneL@CTEP.NCI.NIH.gov}\vspace*{0.2in}\\ }
+\author{\Large Michael C Sachs\vspace{0.05in} \\ \normalsize\emph{National Cancer Institute} \\ \footnotesize \url{maito:michael.sachs@nih.gov}\vspace*{0.2in}\\ }
 
-%\author{Michael C Sachs (National Cancer Institute) \and Lisa M McShane (National Cancer Institute)}
+%\author{Michael C Sachs (National Cancer Institute)}
 
-\date{\footnotesize September 2014. Incomplete Draft. Please do not cite without permission.}
+\date{\footnotesize October 2014. Incomplete Draft. Please do not cite without permission.}
 \linespread{2}
 
 \begin{document}  
@@ -54,48 +54,44 @@ data.
 
 Omics technolgies that generate a large amount of molecular data about a
 cancerous tumor have the potential to provide accurate predictions of a
-patient's prognosis and their response to a specific treatment regime.
-The idea of omics-based biomarkers is that distinct tumor types can be
-identified using the multi-dimensional molecular data leading to
-treatment decisions personalized to that tumor type. An omics-based test
-can guide the decisions to treat or not to treat and help identify the
-particular therapy most likely to work. The challenge is to identify and
-demonstrate definitively that the use of an omics-based decision rule
-improves clinical outcomes in a patient population.
+patient's prognosis and predictions of their response to a specific
+treatment regime. The idea of omics-based biomarkers is that distinct
+tumor types can be identified using the multi-dimensional molecular data
+leading to treatment decisions personalized to that tumor type. An
+omics-based test can guide the decisions to treat or not to treat and
+help identify the particular therapy most likely to work. The challenge
+is to identify and demonstrate definitively that the use of an
+omics-based test improves clinical outcomes in a patient population.
 
-The prognosis of a patient is their expected clinical outcome. An
-omics-based test can be used to predict a patient's prognosis. A test
-that provides accurate predictions of prognosis, regardless of
-treatment, is referred to as a prognostic biomarker. A predictive
-omics-test is one that accurately predicts disease outcomes with the
-application of specific interventions. Predictive markers are therefore
-useful for the selection among two or more treatment options.
-Statistically, a prognostic test is strongly associated with clinical
-outcome and a predictive test modifies the association between treatment
-and clinical outcome (interaction). The two are not mutually exclusive,
-however. It is uncommon for a test to be purely predictive (1), and
-prognostic tests can be used to inform treatment decisions.
-
-A patient's prognosis can be used to determine the type and intensity of
-medical treatment, or whether to treat at all. Endopredict (2) is an
-omics-based test test that is used to determine the likelihood of
-distant recurrence in ER-positive, HER2-negative breast cancer. The test
-has been shown to accurately predict prognosis, and is therefore useful
-for guiding treatment decisions, determining eligibility for trials, and
-making disease-management decisions. Endopredict as a prognostic test
-has been rigorously evaluated and shown to be clinically valid, even
-thought it does not predict response to any specific therapy.
-
-The goal of this paper is to review the path to definitively evaluating
-an omics-based test for prognosis or prediction of treatment response.
-We assume that the patient population is well-defined, and that there
-may exist targeted therapies for a subset of that population. High
-dimensional omics data can be used to identify specific molecular
+An omics-based test can be used to predict a patient's prognosis, which
+is their expected clinical outcome. A test that provides accurate
+predictions of prognosis, regardless of treatment, is referred to as a
+prognostic biomarker. A predictive omics test is one that accurately
+predicts disease outcomes with the application of specific
+interventions. Predictive markers are therefore useful for the selection
+among two or more treatment options. Statistically, a prognostic test is
+strongly associated with clinical outcome and a predictive test modifies
+the association between treatment and clinical outcome (interaction).
+High dimensional omics data can be used to identify specific molecular
 targets as potential mechnisms for drug development, however the use of
 omics technologies for drug development is beyond the scope of this
 review.
 
-The long road to implementing a test in a clinical trial starts with
+The path from development to definitively evaluating an omics-based test
+for prognosis or prediction of treatment response is long and arduous.
+Often, the end goal is to develop a test suitable for use in a clinical
+trial for guiding treatment. The oncology literature is full of reports
+that develop and/or evaluate omics-based tools for prognosis and
+prediction. Developing a simple test based on high-dimensional omics
+data can be complex and often uses novel statistical methods. Definitive
+evaluation of a prognostic or predictive test is costly and rife with
+methodological pitfalls. We aim to review such issues, giving you the
+resources to ask the right questions when critically weighing the
+evidence presented in a report of an omics-based study. Ultimately, as a
+practicing oncologist the question is: ``Is this omics-based test
+something I want to use to improve patient care?''.
+
+The long road to implementing a test in a practice starts with
 analytical validation, that is, demonstrating that the omics-based assay
 accurately and reproducibly measures the molecular quantities. After the
 assay performance is established comes the test development and
@@ -111,7 +107,28 @@ biased. Finally, the risk score must be translated into a binary
 decision, often using a threshold. It remains to demonstrate that the
 use of the test to make this decision improves patient outcomes.
 
-\section{Analytical validation}\label{analytical-validation}
+The following sections specify questions you should ask while reading a
+report of an omics-based clinical study. We review the importance of
+such questions, and common pitfalls to watch for. If you are reporting
+on an omics-based trial, answers to these questions should be made clear
+to the reader. Formal efforts to guide reporting have been developed,
+such as the REMARK checklist (1), the GRIPS statement (2), and a third
+guideline article that lacks an acronym (3). Our review reflects these
+efforts through the readers' lens.
+
+\section{What is the intended clinical
+use?}\label{what-is-the-intended-clinical-use}
+
+Do: define the clinical use (4)
+
+As with all clinical studies, the end goal is to improve patient care.
+Omics studies are no different, and a clear statement of the intended
+clinical use of the omics-test should be prominent.
+
+\section{What is the patient population of
+interest?}\label{what-is-the-patient-population-of-interest}
+
+\section{Is the omics assay valid?}\label{is-the-omics-assay-valid}
 
 Analytical validation of an assay involves evaluating the performance of
 the measurement in terms of accuracy, bias, and precision under a
@@ -132,242 +149,273 @@ Percent tumor, necrosis, etc.
 
 Do: filter features based on QC prior to development
 
-Do: assess the impact of sample and specimen handling. (3--7)
+Do: assess the impact of sample and specimen handling. (5--9)
 
-Do: assess the impact of lots and batch effects. Bias, accuracy. (8,9)
+Do: assess the impact of lots and batch effects. Bias, accuracy. (10,11)
 
 Do: minimize the impact of technical aspects to greatest extent possible
 by developing detailed SOP.
 
-\section{Test development and preliminary
-evaluation}\label{test-development-and-preliminary-evaluation}
+\section{What does the omics-test
+do?}\label{what-does-the-omics-test-do}
 
-Study design: consider retrospective (10)
+Does the test provide a continuous score or a binary classification?
 
-Don't: confound technical factors with clinical outcomes. (11,12)
-
-Do: maintain strict separation between development and evaluation.
-
-Do: cross validation if you have a data-sparse setting. (1,13--15)
-
-Don't: use convoluted methods leading to overfitting.
-
-Don't: do partial resubstitution
+How are the features of the omics assay translated into a clinically
+meaningful quantity?
 
 Compare: feature filtering based on association with outcome,
-regularization. (16,17)
+regularization. (12,13)
 
 Do: consider all available methods, model averaging. Hard to determine
 best method in advance.
 
 Don't: rely on clustering to yield good predictions of outcome.
 
-\section{Demonstrating clinical
-utility}\label{demonstrating-clinical-utility}
+\section{On what samples was the test
+developed?}\label{on-what-samples-was-the-test-developed}
 
-Do: define the clinical use (18)
+Study design: consider retrospective (14)
 
-Do: use a valid and interpretable statistical method appropriate to that
-use (19--21)
+Don't: confound technical factors with clinical outcomes. (15,16)
+
+Do: maintain strict separation between development and evaluation.
+
+Do: cross validation if you have a data-sparse setting. (17--20)
+
+Don't: use convoluted methods leading to overfitting.
+
+\section{On what samples is the test being
+evaluated?}\label{on-what-samples-is-the-test-being-evaluated}
+
+Do: define the clinical use (4)
 
 Do: Design your study appropriately to answer the clinical question
-definitively (22--33)
+definitively (21--32)
 
-Do: Power your trial appropriately (34,35)
+Do: Power your trial appropriately (33,34)
 
-Don't: make these mistakes (36--38)
+Don't: do partial resubstitution
+
+\section{Are valid methods being used to evalute the
+test?}\label{are-valid-methods-being-used-to-evalute-the-test}
+
+Bad: IDI or net reclassification (35,36)
+
+Bad: Comparing AUCs for regression models (37)
+
+Good: comprehensive and pre-specified approach (38)
+
+\section{Are the development and evaluation samples strictly
+separated?}\label{are-the-development-and-evaluation-samples-strictly-separated}
+
+This issue has come up in previous sections, yet this error occurs so
+frequently that it needs to be highlighted in its own section. The
+evaluation sample for the assessment of a prognostic or predictive test
+needs to be completely independent from the development sample. This is
+especially true for omics-based tests, whose developement is often
+complex and convoluted. Any imformation from the evaluation sample that
+leaks into the development sample can bias the results, making tests
+appear better than they truly are.
+
+Don't: do partial resubstitution
+
+Don't: make these mistakes (39--41)
 
 \section{Concluding remarks}\label{concluding-remarks}
 
-Do: follow reporting criteria (39--41)
+Do: follow reporting criteria (1--3,42)
 
 \section{References}\label{references}
 
 \setlength{\parindent}{0pt}
 
-1. McShane LM, Polley M-YC. Development of omics-based clinical tests
-for prognosis and therapy selection: The challenge of achieving
-statistical robustness and clinical utility. Clinical Trials. SAGE
-Publications; 2013;10(5):653--65.
+1. Altman DG, McShane LM, Sauerbrei W, Taube SE. Reporting
+recommendations for tumor marker prognostic studies (rEMARK):
+Explanation and elaboration. BMC medicine. BioMed Central Ltd;
+2012;10(1):51.
 
-2. Filipits M, Rudas M, Jakesz R, Dubsky P, Fitzal F, Singer CF, et al.
-A new molecular predictor of distant recurrence in eR-positive,
-hER2-negative breast cancer adds independent information to conventional
-clinical risk factors. Clinical Cancer Research. American Association
-for Cancer Research; 2011;17(18):6012--20.
+2. Janssens AC, Ioannidis J, Bedrosian S, Boffetta P, Dolan SM, Dowling
+N, et al. Strengthening the reporting of genetic risk prediction studies
+(gRIPS): Explanation and elaboration. European journal of clinical
+investigation. Wiley Online Library; 2011;41(9):1010--35.
 
-3. Werner M, Chott A, Fabiano A, Battifora H. Effect of formalin tissue
+3. McShane LM, Cavenagh MM, Lively TG, Eberhard DA, Bigbee WL, Williams
+PM, et al. Criteria for the use of omics-based predictors in clinical
+trials: Explanation and elaboration. BMC medicine. BioMed Central Ltd;
+2013;11(1):220.
+
+4. Mandrekar SJ, Sargent DJ. Predictive biomarker validation in
+practice: Lessons from real trials. Clinical trials. SAGE Publications;
+2010;7(5):567--73.
+
+5. Werner M, Chott A, Fabiano A, Battifora H. Effect of formalin tissue
 fixation and processing on immunohistochemistry. The American journal of
 surgical pathology. LWW; 2000;24(7):1016--9.
 
-4. Srinivasan M, Sedmak D, Jewell S. Effect of fixatives and tissue
+6. Srinivasan M, Sedmak D, Jewell S. Effect of fixatives and tissue
 processing on the content and integrity of nucleic acids. The American
 journal of pathology. Elsevier; 2002;161(6):1961--71.
 
-5. Maldegem F van, Wit M de, Morsink F, Musler A, Weegenaar J, Noesel CJ
+7. Maldegem F van, Wit M de, Morsink F, Musler A, Weegenaar J, Noesel CJ
 van. Effects of processing delay, formalin fixation, and
 immunohistochemistry on rNA recovery from formalin-fixed
 paraffin-embedded tissue sections. Diagnostic Molecular Pathology. LWW;
 2008;17(1):51--8.
 
-6. Specht K, Richter T, M{ü}ller U, Walch A, Werner M, H{ö}fler H.
+8. Specht K, Richter T, M{ü}ller U, Walch A, Werner M, H{ö}fler H.
 Quantitative gene expression analysis in microdissected archival
 formalin-fixed and paraffin-embedded tumor tissue. The American journal
 of pathology. Elsevier; 2001;158(2):419--29.
 
-7. Iwamoto KS, Mizuno T, Ito T, Akiyama M, Takeichi N, Mabuchi K, et al.
+9. Iwamoto KS, Mizuno T, Ito T, Akiyama M, Takeichi N, Mabuchi K, et al.
 Feasibility of using decades-old archival tissues in molecular
 oncology/epidemiology. The American journal of pathology. American
 Society for Investigative Pathology; 1996;149(2):399.
 
-8. Pennello GA. Analytical and clinical evaluation of biomarkers assays:
-When are biomarkers ready for prime time? Clinical Trials. SAGE
+10. Pennello GA. Analytical and clinical evaluation of biomarkers
+assays: When are biomarkers ready for prime time? Clinical Trials. SAGE
 Publications; 2013;1740774513497541.
 
-9. Isler JA, Vesterqvist OE, Burczynski ME. Analytical validation of
+11. Isler JA, Vesterqvist OE, Burczynski ME. Analytical validation of
 genotyping assays in the biomarker laboratory. Future Medicine Ltd;
 2007;
 
-10. Simon RM, Paik S, Hayes DF. Use of archived specimens in evaluation
+12. Bair E, Tibshirani R. Semi-supervised methods to predict patient
+survival from gene expression data. PLoS biology. Public Library of
+Science; 2004;2(4):e108.
+
+13. Hastie T, Tibshirani R, Friedman J, Hastie T, Friedman J, Tibshirani
+R. The elements of statistical learning. Springer; 2009.
+
+14. Simon RM, Paik S, Hayes DF. Use of archived specimens in evaluation
 of prognostic and predictive biomarkers. Journal of the National Cancer
 Institute. Oxford University Press; 2009;101(21):1446--52.
 
-11. Leek JT, Scharpf RB, Bravo HC, Simcha D, Langmead B, Johnson WE, et
+15. Leek JT, Scharpf RB, Bravo HC, Simcha D, Langmead B, Johnson WE, et
 al. Tackling the widespread and critical impact of batch effects in
 high-throughput data. Nature Reviews Genetics. Nature Publishing Group;
 2010;11(10):733--9.
 
-12. Soneson C, Gerster S, Delorenzi M. Batch effect confounding leads to
+16. Soneson C, Gerster S, Delorenzi M. Batch effect confounding leads to
 strong bias in performance estimates obtained by cross-validation. PloS
 one. Public Library of Science; 2014;9(6):e100335.
 
-13. Moons KG, Kengne AP, Woodward M, Royston P, Vergouwe Y, Altman DG,
+17. McShane LM, Polley M-YC. Development of omics-based clinical tests
+for prognosis and therapy selection: The challenge of achieving
+statistical robustness and clinical utility. Clinical Trials. SAGE
+Publications; 2013;10(5):653--65.
+
+18. Moons KG, Kengne AP, Woodward M, Royston P, Vergouwe Y, Altman DG,
 et al. Risk prediction models: I. development, internal validation, and
 assessing the incremental value of a new (bio) marker. Heart. BMJ
 Publishing Group Ltd; British Cardiovascular Society;
 2012;98(9):683--90.
 
-14. Moons KG, Kengne AP, Grobbee DE, Royston P, Vergouwe Y, Altman DG,
+19. Moons KG, Kengne AP, Grobbee DE, Royston P, Vergouwe Y, Altman DG,
 et al. Risk prediction models: II. external validation, model updating,
 and impact assessment. Heart. BMJ Publishing Group Ltd; British
 Cardiovascular Society; 2012;heartjnl--l2011.
 
-15. Polley M-YC, Freidlin B, Korn EL, Conley BA, Abrams JS, McShane LM.
+20. Polley M-YC, Freidlin B, Korn EL, Conley BA, Abrams JS, McShane LM.
 Statistical and practical considerations for clinical evaluation of
 predictive biomarkers. Journal of the National Cancer Institute. Oxford
 University Press; 2013;105(22):1677--83.
 
-16. Bair E, Tibshirani R. Semi-supervised methods to predict patient
-survival from gene expression data. PLoS biology. Public Library of
-Science; 2004;2(4):e108.
-
-17. Hastie T, Tibshirani R, Friedman J, Hastie T, Friedman J, Tibshirani
-R. The elements of statistical learning. Springer; 2009.
-
-18. Mandrekar SJ, Sargent DJ. Predictive biomarker validation in
-practice: Lessons from real trials. Clinical trials. SAGE Publications;
-2010;7(5):567--73.
-
-19. Janes H, Brown MD, Huang Y, Pepe MS. An approach to evaluating and
-comparing biomarkers for patient treatment selection. The international
-journal of biostatistics. 2014;10(1):99--121.
-
-20. Pepe MS. Problems with risk reclassification methods for evaluating
-prediction models. American journal of epidemiology. Oxford University
-Press; 2011;kwr013.
-
-21. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
-not rely on integrated discrimination improvement and net
-reclassification index. Statistics in medicine. John Wiley \& Sons, Ltd;
-2013;
-
-22. Freidlin B, Korn EL. Biomarker enrichment strategies: Matching trial
+21. Freidlin B, Korn EL. Biomarker enrichment strategies: Matching trial
 design to biomarker credentials. Nature Reviews Clinical Oncology.
 Nature Publishing Group; 2014;11(2):81--90.
 
-23. Baker SG, Sargent DJ. Designing a randomized clinical trial to
+22. Baker SG, Sargent DJ. Designing a randomized clinical trial to
 evaluate personalized medicine: A new approach based on risk prediction.
 Journal of the National Cancer Institute. Oxford University Press; 2010;
 
-24. Baker SG, Kramer BS, Sargent DJ, Bonetti M. Biomarkers, subgroup
+23. Baker SG, Kramer BS, Sargent DJ, Bonetti M. Biomarkers, subgroup
 evaluation, and clinical trial design. Discovery medicine.
 2012;13(70):187--92.
 
-25. Brannath W, Zuber E, Branson M, Bretz F, Gallo P, Posch M, et al.
+24. Brannath W, Zuber E, Branson M, Bretz F, Gallo P, Posch M, et al.
 Confirmatory adaptive designs with bayesian decision tools for a
 targeted therapy in oncology. Statistics in medicine. Wiley Online
 Library; 2009;28(10):1445--63.
 
-26. Denne JS, Pennello G, Zhao L, Chang S-C, Althouse S. Identifying a
+25. Denne JS, Pennello G, Zhao L, Chang S-C, Althouse S. Identifying a
 subpopulation for a tailored therapy: Bridging clinical efficacy from a
 laboratory-developed assay to a validated in vitro diagnostic test kit.
 Statistics in Biopharmaceutical Research. Taylor \& Francis;
 2014;6(1):78--88.
 
-27. Eng KH. Randomized reverse marker strategy design for prospective
+26. Eng KH. Randomized reverse marker strategy design for prospective
 biomarker validation. Statistics in medicine. Wiley Online Library;
 2014;
 
-28. Freidlin B, Jiang W, Simon R. The cross-validated adaptive signature
+27. Freidlin B, Jiang W, Simon R. The cross-validated adaptive signature
 design. Clinical Cancer Research. AACR; 2010;16(2):691--8.
 
-29. Freidlin B, McShane LM, Polley M-YC, Korn EL. Randomized phase iI
+28. Freidlin B, McShane LM, Polley M-YC, Korn EL. Randomized phase iI
 trial designs with biomarkers. Journal of Clinical Oncology. American
 Society of Clinical Oncology; 2012;30(26):3304--9.
 
-30. Freidlin B, Korn EL, Gray R. Marker sequential test (maST) design.
+29. Freidlin B, Korn EL, Gray R. Marker sequential test (maST) design.
 Clinical Trials. SAGE Publications; 2013;1740774513503739.
 
-31. Jiang W, Freidlin B, Simon R. Biomarker-adaptive threshold design: A
+30. Jiang W, Freidlin B, Simon R. Biomarker-adaptive threshold design: A
 procedure for evaluating treatment with possible biomarker-defined
 subset effect. Journal of the National Cancer Institute. Oxford
 University Press; 2007;99(13):1036--43.
 
-32. Mandrekar SJ, Sargent DJ. Clinical trial designs for predictive
+31. Mandrekar SJ, Sargent DJ. Clinical trial designs for predictive
 biomarker validation: Theoretical considerations and practical
 challenges. Journal of Clinical Oncology. American Society of Clinical
 Oncology; 2009;27(24):4027--34.
 
-33. Morita S, Yamamoto H, Sugitani Y. Biomarker-based bayesian
+32. Morita S, Yamamoto H, Sugitani Y. Biomarker-based bayesian
 randomized phase iI clinical trial design to identify a sensitive
 patient subpopulation. Statistics in medicine. John Wiley \& Sons, Ltd;
 2014;
 
-34. Mackey HM, Bengtsson T. Sample size and threshold estimation for
+33. Mackey HM, Bengtsson T. Sample size and threshold estimation for
 clinical trials with predictive biomarkers. Contemporary clinical
 trials. Elsevier; 2013;36(2):664--72.
 
-35. Peterson B, George SL. Sample size requirements and length of study
+34. Peterson B, George SL. Sample size requirements and length of study
 for testing interaction in a 1\(\times\)\textless{} i\textgreater{}
 k\textless{}/i\textgreater{} factorial design when time-to-failure is
 the outcome. Controlled clinical trials. Elsevier; 1993;14(6):511--22.
 
-36. Lee S. Mistakes in validating the accuracy of a prediction
+35. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
+not rely on integrated discrimination improvement and net
+reclassification index. Statistics in medicine. John Wiley \& Sons, Ltd;
+2013;
+
+36. Pepe MS. Problems with risk reclassification methods for evaluating
+prediction models. American journal of epidemiology. Oxford University
+Press; 2011;kwr013.
+
+37. Seshan VE, G{ö}nen M, Begg CB. Comparing rOC curves derived from
+regression models. Statistics in medicine. Wiley Online Library;
+2013;32(9):1483--93.
+
+38. Janes H, Brown MD, Huang Y, Pepe MS. An approach to evaluating and
+comparing biomarkers for patient treatment selection. The international
+journal of biostatistics. 2014;10(1):99--121.
+
+39. Lee S. Mistakes in validating the accuracy of a prediction
 classifier in high-dimensional butsmall-sample microarray data.
 Statistical methods in medical research. SAGE Publications; 2008;
 
-37. Sargent DJ, Mandrekar SJ. Statistical issues in the validation of
+40. Sargent DJ, Mandrekar SJ. Statistical issues in the validation of
 prognostic, predictive, and surrogate biomarkers. Clinical Trials. SAGE
 Publications; 2013;10(5):647--52.
 
-38. Simon R, Radmacher MD, Dobbin K, McShane LM. Pitfalls in the use of
+41. Simon R, Radmacher MD, Dobbin K, McShane LM. Pitfalls in the use of
 dNA microarray data for diagnostic and prognostic classification.
 Journal of the National Cancer Institute. Oxford University Press;
 2003;95(1):14--8.
 
-39. Bouwmeester W, Zuithoff NP, Mallett S, Geerlings MI, Vergouwe Y,
+42. Bouwmeester W, Zuithoff NP, Mallett S, Geerlings MI, Vergouwe Y,
 Steyerberg EW, et al. Reporting and methods in clinical prediction
 research: A systematic review. PLoS medicine. Public Library of Science;
 2012;9(5):e1001221.
-
-40. Janssens AC, Ioannidis J, Bedrosian S, Boffetta P, Dolan SM, Dowling
-N, et al. Strengthening the reporting of genetic risk prediction studies
-(gRIPS): Explanation and elaboration. European journal of clinical
-investigation. Wiley Online Library; 2011;41(9):1010--35.
-
-41. McShane LM, Cavenagh MM, Lively TG, Eberhard DA, Bigbee WL, Williams
-PM, et al. Criteria for the use of omics-based predictors in clinical
-trials: Explanation and elaboration. BMC medicine. BioMed Central Ltd;
-2013;11(1):220.
 
 \end{document}
