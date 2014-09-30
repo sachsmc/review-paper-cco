@@ -58,6 +58,21 @@ $toc$
 </nav>
 $endif$
 
+<style type="text/css">
+header#follow {
+
+width: 160px;
+position: fixed;
+float: left;
+margin-left: -160px;
+
+}
+</style>
+
+<header id="follow">
+<a href="http://github.com/sachsmc/review-paper-cco/blob/Paper/review-paper-cco.md">Edit on github</a>
+</header>
+
 $if(abstract)$
 
 <p class="small"><strong>Abstract: </strong><em>$abstract$</em></p>
