@@ -21,31 +21,37 @@ The long road to implementing a test in a practice starts with analytical valida
 
 The following sections specify questions you should ask while reading a report of an omics-based clinical study. We review the importance of such questions, and common pitfalls to watch for. If you are reporting on an omics-based trial, answers to these questions should be made clear to the reader. Formal efforts to guide reporting have been developed, such as the REMARK checklist [@altman2012reporting], the GRIPS statement [@janssens2011strengthening], and a third guideline article that lacks an acronym [@mcshane2013criteria]. Our review reflects these efforts through the readers' lens. 
 
+Terminology
+==============
+An omics-based test, or simple an **omics test**, is a mapping from the set of features on the omics assay to a single number. This number can be a binary value, such as good or poor prognosis, or it can provide a continuous scale, such as a risk score. It must be feasible to perform the test on an individual patient basis, by measuring the omics assay on the individual's tissue. The assay generates lots of measurements, which we will refer to as **features**, and then fixed mathematical calculations are done to tranform the many features into the single test value. Examples of such features are gene expression values, protein expression measurements, or genomic mutations. 
+
+Investigators determine the way in which the mathematical calculations in the **development phase**. Often, there is a complete sample which is randomly allocated into roughly equal **development** and **validation** samples. These are also sometimes referred to as **training** and **test** sets of samples. A report may cover only one of the two steps. At the end of the development phase, the model for the mathematical calculations is fixed and locked down.
+
+That model is evaluated definitively in the **validation** phase in a completely independent sample. In order for the validation to be unbiased and definitive, it is imperative that no information from the validation sample leaks into the development phase. The validation should mimic realistic clinical use as much as possible, and that means that no further refinement to the test is allowed based on the observed results. 
+
+
 What is the intended clinical use?
 ============
 Do: define the clinical use [@mandrekar2010predictive]
 
-As with all clinical studies, the end goal is to improve patient care. Omics studies are no different, and a clear statement of the intended clinical use of the omics-test should be prominent. 
+As with all clinical studies, the end goal is to improve patient care. Omics studies are no different, and a clear statement of the intended clinical use of the omics-test should be prominent. Carefully describing the context for the use of the assay determines the type of study needed to develop and validate it. The intended use of the assay also provides an overarching context in which to interpret the population under study, the assay measurements, and the statistical methods. 
 
 
 
 What is the patient population of interest?
 ===========
+Along with the intended clinical use, a report should have a clear statement of the intended population in which the test is being evaluated. This could be broad or quite specific. 
 
 
 Is the omics assay valid?
 ===========
 Analytical validation of an assay involves evaluating the performance of the measurement in terms of accuracy, bias, and precision under a variety of conditions. Conditions are things like preanalytic factors such as specimen quality, specimen collection, storage, and processing procedures, and technical aspects such as laboratory technician and batch effects from reagent lots or other assay materials. The high-dimensional nature of omics data makes it very difficult to assess each of the hundreds or thousands of outputs from a single assay. In developing a omics-based signature that only uses a subset of the components of a high-dimensional assay, one can analytically validate the final signature alone. However, prior to developing the signature, one must develop detailed standard operating procedures for specimen handling and processing to ensure a baseline level of validity. 
 
-Do: develop criteria for the rejection of poor-quality specimens. Percent tumor, necrosis, etc. 
+Did the authors of the report state what type of specimens were used in the study? Can the test be applied to formalin-fixed parafin embedded (FFPE) tissue, or only fresh-frozen? Most omics-based assays require a minimum percentage of tumor to be sucessful. A report should clearly state what criteria were used to screen tissue samples prior to running the assay. Generally this involves a criteria for the rejection of poor-quality specimens on the basis of percent tumor, percent necrosis, or some other marker of tissue quality. 
 
-Do: filter features based on QC prior to development
+Molecular assays can sucessfully be run on decades old FFPE tissue [@iwamoto1996feasibility]. However, factors involved in the tissue processing and storage can impact the results [@srinivasan2002effect; @van2008effects; @specht2001quantitative]. Due to the high dimensionality of omics assays, a small amount of bias on each feature can translate into large errors when incorporating data from hundreds or thousands of features into a single continuous measurement. Therefore it is important to assess the impact of processing on the individual features in addition to the overall test. 
 
-Do: assess the impact of sample and specimen handling. [@werner2000effect; @srinivasan2002effect; @van2008effects; @specht2001quantitative; @iwamoto1996feasibility]
-
-Do: assess the impact of lots and batch effects. Bias, accuracy. [@pennello2013analytical; @isler2007analytical] 
-
-Do: minimize the impact of technical aspects to greatest extent possible by developing detailed SOP. 
+In addition to processing and storage, technical aspects of an assay can impact the final results in a predictable way [@pennello2013analytical; @isler2007analytical]. There could be technicial effects, differences due to reagent lots, and other batch effects. Such batch effects are commonly recognized yet often ignored in high-dimensional assays [@leek2010tackling]. Efforts should be made to measure the impact of these technical aspects and minimize them to the greatest extent possible. The way in which samples are assayed should be randomized to prevent confounding batch effects with the clinical outcome. Development and validation samples are sometimes run in the same batch or with the same lot of technical aspects. This does minimize batch effects, however, it can provide an overly optimistic assessment of the test, because in clinical use, running things in the same batch is not an option. 
 
 
 What does the omics-test do?
@@ -63,6 +69,8 @@ Don't: rely on clustering to yield good predictions of outcome.
 
 On what samples was the test developed?
 ============
+
+Similar to developing criteria for rejection of tissue samples, in omics settings, criteria should be developed for the rejection of individual features (e.g. genes, proteins) prior to the development of the test. Features that do not pass the pre-specified quality metrics should be removed from consideration from the final test. Note that this feature processing step does not involve any clinical outcome measurements. As a concrete example, in the development of a gene expression based test, investigators may choose to exclude probe locations that have a dynamic range under some threhold, or probles for which only a small proportion of the samples had calls, or probes that have absolute expression levels below some theshold. Quality control steps like this can ensure a more robust a reproducible development of the test. 
 
 Study design: consider retrospective [@simon2009use]
 
