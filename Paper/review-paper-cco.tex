@@ -366,11 +366,61 @@ Don't: do partial resubstitution
 \section{Are valid methods being used to evaluate the
 test?}\label{are-valid-methods-being-used-to-evaluate-the-test}
 
-Bad: IDI or net reclassification (43,44)
+To evaluate the value of an omics-based test for prognosis or prediction
+we need to estimate the association between the test and the clinical
+outcome on an independent sample (the validation sample). What statistic
+or statistics are used to measure this association? Often, investigators
+will report only the odds ratio (in the case of a binary clinical
+outcome) or the hazard ratio (for a time-to-event clinical outcome) for
+the omics test. The odds ratio or hazard ratio is insufficient to
+determine the clinical utility of an omics-based test (43). Ideally, a
+statistical method or set of statistical measures should be chosen to
+address the intended clinical use of the test.
 
-Bad: Comparing AUCs for regression models (45)
+For a prognostic test, how often does the test correctly predict
+recurrence (true positives) and how often does it correctly predict
+non-recurrence (true negatives)? It is imperative to report both of
+these measures, also known as the sensitivity and specificity, because
+one can correctly predict all true positives simply by predicting that
+all cases are positive. Is the performance good enough to change
+clinical practice? Patients want to know what the likelihood of
+recurrence based on their test results; this is called the positive
+predictive value. If the likelihood of recurrence is very low overall in
+the population, as it is in stage 1 breast cancer, then a new test must
+be highly informative for it to be practice changing. For
+continuous-valued tests, extensions to these measures exist and can be
+visualized with the ROC curve. Furthermore, extensions also exist for
+time-to-event clinical outcomes like survival or progression free
+survival. (44) is the definitive reference for statistical measures for
+the evaluation of diagnostic and prognostic tests.
 
-Good: comprehensive and pre-specified approach (46)
+In recent years, a number of potentially misleading statistical methods
+have crept into common usage. The net reclassification index (NRI) and
+its sibling, the integrated discrimination improvement (IDI), were
+designed to assess the added value of a new test to existing criteria:
+the incremental value. For example, it is often of interest to determine
+whether a novel omics-based test adds value to standard clinical and
+pathological features. The NRI and IDI specifically evaluate whether the
+novel component enhances the differentiation of patients into risk
+groups. This does not address the question whether the novel component
+\emph{correctly} classifies patients (45,46). Others have noted
+additional problems with the statistical operating characteristics of
+the method, most importantly, that it is not a valid measure (47--49).
+More fundamentally, it is not clear what clinical question this measure
+addresses; who cares if patients are classified differently if we don't
+know if they are classified correctly? Remember to keep in mind the
+intended clinical use of a new test and you won't be fooled by such
+misleading approaches.
+
+As opposed to \emph{ad hoc} methods or misleading statistics, a good
+evaluation of an omics-based test takes a comprehensive and
+pre-specified approach to address the intended clinical use. There is no
+shortage of statistical methods for the evaluation of prognostic or
+predictive test, so one can be found or developed no matter what the
+clinical question is. For predictive omics-based tests to guide therapy,
+a rigorous approach to its evaluation has been described, along with
+statistical software for general use (50). This continues to be an
+active area of research in biostatistics.
 
 \section{Are the development and evaluation samples strictly
 separated?}\label{are-the-development-and-evaluation-samples-strictly-separated}
@@ -399,7 +449,7 @@ detect when the model development is more complex, and if
 cross-validation is used to estimate the performance.
 
 In settings where relatively few samples are available, cross-validation
-is an efficient and valid approach to estimating performance (47). The
+is an efficient and valid approach to estimating performance (51). The
 key point whether using the split sample approach or cross validation is
 that the entire model building process must be validated. Even informal
 checks of the model on the validation sample, such as viewing survival
@@ -410,7 +460,7 @@ process.
 
 \section{Concluding remarks}\label{concluding-remarks}
 
-Do: follow reporting criteria (1--3,48)
+Do: follow reporting criteria (1--3,52)
 
 \section{References}\label{references}
 
@@ -605,28 +655,43 @@ for testing interaction in a 1\(\times\)\textless{} i\textgreater{}
 k\textless{}/i\textgreater{} factorial design when time-to-failure is
 the outcome. Controlled clinical trials. Elsevier; 1993;14(6):511--22.
 
-43. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
+43. Pepe MS, Janes H, Longton G, Leisenring W, Newcomb P. Limitations of
+the odds ratio in gauging the performance of a diagnostic, prognostic,
+or screening marker. American journal of epidemiology. Oxford Univ
+Press; 2004;159(9):882--90.
+
+44. Pepe MS. The statistical evaluation of medical tests for
+classification and prediction. Oxford University Press; 2003.
+
+45. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
 not rely on integrated discrimination improvement and net
 reclassification index. Statistics in medicine. John Wiley \& Sons, Ltd;
 2013;
 
-44. Pepe MS. Problems with risk reclassification methods for evaluating
+46. Pepe MS. Problems with risk reclassification methods for evaluating
 prediction models. American journal of epidemiology. Oxford University
 Press; 2011;kwr013.
 
-45. Seshan VE, G{ö}nen M, Begg CB. Comparing rOC curves derived from
-regression models. Statistics in medicine. Wiley Online Library;
-2013;32(9):1483--93.
+47. Pepe MS, Janes H, Li CI. Net risk reclassification p values: Valid
+or misleading? Journal of the National Cancer Institute. Oxford
+University Press; 2014;dju041.
 
-46. Janes H, Brown MD, Huang Y, Pepe MS. An approach to evaluating and
+48. Kerr KF, Wang Z, Janes H, McClelland RL, Psaty BM, Pepe MS. Net
+reclassification indices for evaluating risk prediction instruments: A
+critical review. Epidemiology. LWW; 2014;25(1):114--21.
+
+49. Hilden J. Commentary: On nRI, iDI, and Good-looking statistics
+with nothing underneath. Epidemiology. LWW; 2014;25(2):265--7.
+
+50. Janes H, Brown MD, Huang Y, Pepe MS. An approach to evaluating and
 comparing biomarkers for patient treatment selection. The international
 journal of biostatistics. 2014;10(1):99--121.
 
-47. Lee S. Mistakes in validating the accuracy of a prediction
+51. Lee S. Mistakes in validating the accuracy of a prediction
 classifier in high-dimensional butsmall-sample microarray data.
 Statistical methods in medical research. SAGE Publications; 2008;
 
-48. Bouwmeester W, Zuithoff NP, Mallett S, Geerlings MI, Vergouwe Y,
+52. Bouwmeester W, Zuithoff NP, Mallett S, Geerlings MI, Vergouwe Y,
 Steyerberg EW, et al. Reporting and methods in clinical prediction
 research: A systematic review. PLoS medicine. Public Library of Science;
 2012;9(5):e1001221.
