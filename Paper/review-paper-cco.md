@@ -25,22 +25,27 @@ Terminology
 ==============
 An omics-based test, or simple an **omics test**, is a mapping from the set of features on the omics assay to a single number. This number can be a binary value, such as good or poor prognosis, or it can provide a continuous scale, such as a risk score. It must be feasible to perform the test on an individual patient basis, by measuring the omics assay on the individual's tissue. The assay generates lots of measurements, which we will refer to as **features**, and then fixed mathematical calculations are done to transform the many features into the single test value. Examples of such features are gene expression values, protein expression measurements, or genomic mutations. 
 
-Investigators determine the way in which the mathematical calculations in the **development phase**. Often, there is a complete sample which is randomly allocated into roughly equal **development** and **validation** samples. These are also sometimes referred to as **training** and **test** sets of samples. A report may cover only one of the two steps. At the end of the development phase, the model for the mathematical calculations is fixed and locked down.
+Investigators determine the way that the mathematical calculations are done in the **development phase**. Often, there is a complete sample which is randomly allocated into **development** and **validation** samples. These are also sometimes referred to as **training** and **test** sets of samples. A report may cover only one of the two steps. At the end of the development phase, the model for the mathematical calculations is fixed and locked down.
 
 That model is evaluated definitively in the **validation** phase in a completely independent sample. In order for the validation to be unbiased and definitive, it is imperative that no information from the validation sample leaks into the development phase. The validation should mimic realistic clinical use as much as possible, and that means that no further refinement to the test is allowed based on the observed results. 
 
 
 What is the intended clinical use?
 ============
-Do: define the clinical use [@mandrekar2010predictive]
 
 As with all clinical studies, the end goal is to improve patient care. Omics studies are no different, and a clear statement of the intended clinical use of the omics-test should be prominent. Carefully describing the context for the use of the assay determines the type of study needed to develop and validate it. The intended use of the assay also provides an overarching context in which to interpret the population under study, the assay measurements, and the statistical methods. 
+
+Omics-based tests in oncology generally are used for one of two clinical purposes: prognostic or predictive. A **prognostic** test is used to predict the likely clinical outcome of a patient. What is the clinical use of such a prediction? Often a prognosis is used to guide management of the disease. Patients with a very good prognosis may opt not to receive any treatment, while patients with a poor prognosis may opt for more aggressive treatment. An omics-based  prognostic test that is currently used in practice is EndoPredict, which is used to predict recurrence in ER-positive, HER2-negative breast cancer [@filipits2011new]. For patients with a low risk of recurrence, it has been demonstrated that the risks of chemotherapy do not outweigh the benefits. Prognostic tests are clinically useful for guiding general disease management. 
+
+**Predictive** tests are most useful for selecting patient populations for treatment with specific targeted therapies. This presumes the existence of a particular molecular targeted therapy. The predictive test is used to identify patients who will benefit from the targeted therapy. Predictive tests are generally based on only one or a few molecular characteristics that the therapy may target. For example, HER-2 is a gene that predicts a more aggressive form of breast cancer. Trastuzumab is a drug that specifically targets HER-2 and has been shown to be effective in HER-2 positive breast cancer [@fleeman2013pertuzumab]. While targeted therapies generally target only one molecular characteristic, omics assays can be used to identify molecular targets for less well-understood drugs. However, most successful targeted therapies have associated predictive tests that were developed based on the underlying biology rather than a broad search over a large number of molecular features [@sawyers2008cancer].
 
 
 
 What is the patient population of interest?
 ===========
-Along with the intended clinical use, a report should have a clear statement of the intended population in which the test is being evaluated. This could be broad or quite specific. 
+Along with the intended clinical use, a report should have a clear statement of the intended population in which the test is being evaluated. This could be broad or quite specific. For the omics test to be useful, it must provide sufficient information above and beyond the standard of care in the target patient population. The distribution of the omics test and the expected benefit in the population should be clearly specified in advance. 
+
+The expected benefit of a new omics-based test could differ greatly by patient population. For instance, a prognostic test has more potential for benefit in stage 2 breast cancer than it does in stage 1 breast cancer, as the prognosis for stage 1 is already very good. Evaluating an omics-based test in a broad populations that encompasses multiple stages or multiple disease types can be difficult, as the test must provide more information beyond that provided by standard clinical and pathological factors. 
 
 
 Is the omics assay valid?
@@ -53,26 +58,11 @@ Molecular assays can successfully be run on decades old FFPE tissue [@iwamoto199
 
 In addition to processing and storage, technical aspects of an assay can impact the final results in a predictable way [@pennello2013analytical; @isler2007analytical]. There could be technical effects, differences due to reagent lots, and other batch effects. Such batch effects are commonly recognized yet often ignored in high-dimensional assays [@leek2010tackling]. Efforts should be made to measure the impact of these technical aspects and minimize them to the greatest extent possible. The way in which samples are assayed should be randomized to prevent confounding batch effects with the clinical outcome. Development and validation samples are sometimes run in the same batch or with the same lot of technical aspects. This does minimize batch effects, however, it can provide an overly optimistic assessment of the test, because in clinical use, running things in the same batch is not an option. 
 
-
-What does the omics-test do?
-==============
-Does the test provide a continuous score or a binary classification?  
-
-How are the features of the omics assay translated into a clinically meaningful quantity?
-
-Compare: feature filtering based on association with outcome, regularization. [@bair2004semi; @hastie2009elements]
-
-Do: consider all available methods, model averaging. Hard to determine best method in advance. 
-
-Don't: rely on clustering to yield good predictions of outcome. 
-
-
 On what samples was the test developed?
 ============
 
 Similar to developing criteria for rejection of tissue samples, in omics settings, criteria should be developed for the rejection of individual features (e.g. genes, proteins) prior to the development of the test. Features that do not pass the pre-specified quality metrics should be removed from consideration from the final test. Note that this feature processing step does not involve any clinical outcome measurements. As a concrete example, in the development of a gene expression based test, investigators may choose to exclude probe locations that have a dynamic range under some threshold, or probes for which only a small proportion of the samples had calls, or probes that have absolute expression levels below some threshold. Quality control steps like this can ensure a more robust a reproducible development of the test. 
 
-Study design: consider retrospective [@simon2009use]
 
 Don't: confound technical factors with clinical outcomes. [@leek2010tackling; @soneson2014batch]
 
@@ -83,9 +73,26 @@ Do: cross validation if you have a data-sparse setting. [@mcshane2013development
 Don't: use convoluted methods leading to overfitting. 
 
 
+What does the omics-test do?
+==============
+Once the analytical validity of the omics assay is established, the features are translated into a binary classification, a multi-category classification, or a continuous risk score. Carefully evaluate the methods used to perform this translation and ask how are the features of the omics assay translated into a clinically meaningful quantity? 
+
+Unfortunately, a common approach to developing prediction models is to use cluster analysis of omics features, ignoring the clinical outcome among the development samples. Cluster analysis is a class of methods that is used to partition samples into groups based on the similarities or differences among the omics features [@hastie2009elements]. The meaning and number groups are not known in advance, but rather they are data dependent. Clustering is unsupervised in the sense that the groups discovery is done ignoring the true groups defined by the clinical outcome. The resulting clusters are not designed to provide valid information regarding a prognosis or prediction of response to therapy [@simon2003pitfalls]. A common argument in favor of clustering is that it identifies biologically distinct groups. However, the groups are identified using a statistical algorithm and the biological relevance is only considered *post hoc*. For developing omics-based prognostic or predictive tests, it is better to use statistical methods which are designed to address those aims. 
+
+Often, there are more features measured than there are patients in the sample. In such high-dimensional settings, it is required to identify a subset of the features that will be used in the final multivariate mathematical model. There are two broad statistical approaches to this problem: **filtering** and **regularization**. 
+
+Filtering is a statistical approach where univariate methods are applied to each of the many omics features in turn. Typically, the univariate method involves estimating the association of the feature with the clinical outcome. Then, some criterion, which is chosen in advance or selected using cross-validation, is applied to the statistic to select a subset of features. For example, I am interested in developing a gene expression based test to predict clinical response to a new therapy. For each of the 1000 gene expression features that I have, I can compute a t-statistic comparing the expression levels for responders versus non-responders. I then filter out the genes with t-test p-values greater than 0.0001, and use the remaining ones in a multivariable logistic regression model to predict response. [@bair2004semi] describes a novel approach to filtering that is applied successfully to predict B-cell lymphoma subtypes using gene expression microarrays. 
+
+Regularization is an approach where all of the features in consideration are entered into a special multivariable statistical model for prediction of the clinical outcome, even if there are more features than samples. The special model includes a penalty component which encourages the model to throw out or downplay the impact of features that are not relevant. There are various types of penalty functions each with different properties, such as the LASSO [@tibshirani1996regression], the ridge penalty [@hoerl1970ridge], the elastic net [@zou2005regularization], and others [@hastie2009elements]. Each type of penalty term contains at least one tuning parameter, which may be pre-specified or selected using cross-validation. 
+
+Each type of approach has its merits, and within each class there are a variety of specific models to choose from. In real applications, it is hard to determine what method will work best in advance. Instead of selecting a single model to use, multiple models can be averaged to improve prediction [@hoeting1999bayesian]. This approach, called Bayesian model averaging has proven successful in different applications, including prediction of cancer subtypes [@yeung2005bayesian]. It is more common, however, to try out various different methods then select the one with the best performance. This is fine as long as the model selection is done entirely separated from the final validation sample. Leaking of information from the validation data into the model selection process can cause bias in insidious ways. Verify that the model selection and estimation process was done completely independently and locked down. 
+
+
 On what samples is the test being evaluated?
 ===============
 Do: define the clinical use [@mandrekar2010predictive]
+
+Study design: consider retrospective [@simon2009use]
 
 Do: Design your study appropriately to answer the clinical question definitively [@freidlin2014biomarker; @baker2010designing; @baker2012biomarkers; @brannath2009confirmatory; @denne2014identifying; @eng2014randomized; @freidlin2010cross; @freidlin2012randomized; @freidlin2013marker; @jiang2007biomarker; @mandrekar2009clinical; @morita2014biomarker]
 
@@ -107,7 +114,7 @@ This issue has come up in previous sections, yet this error occurs so frequently
 
 Leaking information between samples can happen in subtle ways. Sometimes, part of the model development process is done on the validation data again. This is called partial resubstitution [@simon2003pitfalls]. For example, a common model development approach is to first filter a subset of 50 genes from a larger set of 450,000 based on their observed association with the outcome. Then, the 50 genes are put into a regression model to develop a single risk score. Occasionally, investigators will perform the filtering on the development sample and then re-estimate the regression model using the combined development and validation samples. This gives overly optimistic estimates of the performance of the algorithm. Partial resubstitution can be difficult to detect when the model development is more complex, and if cross-validation is used to estimate the performance. 
 
-Don't: make these mistakes [@lee2008mistakes; @sargent2013statistical]
+In settings where relatively few samples are available, cross-validation is an efficient and valid approach to estimating performance [@lee2008mistakes]. The key point whether using the split sample approach or cross validation is that the entire model building process must be validated. Even informal checks of the model on the validation sample, such as viewing survival curve plots, prior to locking down the model can unknowingly cause bias. Therefore, once again we highlight the imperative that the validation sample be strictly separated from the **entire** model development process. 
 
 
 
