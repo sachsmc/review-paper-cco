@@ -250,8 +250,8 @@ randomized to prevent confounding batch effects with the clinical
 outcome. Development and validation samples are sometimes run in the
 same batch or with the same lot of technical aspects. This does minimize
 batch effects, however, it can provide an overly optimistic assessment
-of the test, because in clinical use, running things in the same batch
-is not an option.
+of the test, because in clinical use, running samples in the same batch
+is not always an option.
 
 \section{On what samples was the test
 developed?}\label{on-what-samples-was-the-test-developed}
@@ -267,15 +267,42 @@ investigators may choose to exclude probe locations that have a dynamic
 range under some threshold, or probes for which only a small proportion
 of the samples had calls, or probes that have absolute expression levels
 below some threshold. Quality control steps like this can ensure a more
-robust a reproducible development of the test.
+robust and reproducible development of the test.
 
-Don't: confound technical factors with clinical outcomes. (13,14)
+Even with care quality control and a locked down standard operating
+procedure, it is difficult to completely eliminate the effects of
+technical factors on assay results. Therefore, when designing the
+development phase, be mindful not to confound such technical factors
+with the clinical outcomes. The problem of batch effects is widespread
+in omics research and can lead to spurious or irreproducible results
+(13,14). As an extreme example, consider developing an omics-based test
+to predict a binary clinical response. In the development phase, all of
+the assays for the clinical responders were run using reagent A, while
+all of the assays for the clinical non-responders were run using reagent
+B. It turns out that the reagent has a significant effect on the assays.
+The development phase would then lead to what seems like an excellent
+predictor, except it is predicting the batch effect rather than the
+clinical outcome.
 
-Do: maintain strict separation between development and evaluation.
+In many oncology settings, such as pediatric cancers, patients and
+specimens may be very sparse. It may be difficult to enroll sufficient
+subjects to develop and validate an omics test on independent samples.
+In that case, cross-validation can provide an unbiased estimate of
+prediction error, if done properly (15). Cross-validation refers to the
+idea that a model can be evaluated using the same data on which it is
+developed. Similar to a split sample approach, in cross-validation only
+a small portion of the sample is left out at a time. The model is
+estimated on the remaining samples, and the performance is evaluated on
+the left-out independent portion. This process is repeated many times to
+get a more precise estimate of the performance. (16) describe a cross
+validated trial design tailored for sparse data settings.
 
-Do: cross validation if you have a data-sparse setting. (15--18)
-
-Don't: use convoluted methods leading to overfitting.
+In doing cross-validation, it is important to validate the entire model
+estimation process, not only part of it. For that reason it is often
+best to avoid convoluted test development procedures so as not to
+mistakenly leak information from the validation data (17). More complex
+procedures can also lead to overfitting, in which the model identifies
+random noise in the data, rather than a true signal of clinical use.
 
 \section{What does the omics-test
 do?}\label{what-does-the-omics-test-do}
@@ -290,12 +317,12 @@ Unfortunately, a common approach to developing prediction models is to
 use cluster analysis of omics features, ignoring the clinical outcome
 among the development samples. Cluster analysis is a class of methods
 that is used to partition samples into groups based on the similarities
-or differences among the omics features (19). The meaning and number
+or differences among the omics features (15). The meaning and number
 groups are not known in advance, but rather they are data dependent.
 Clustering is unsupervised in the sense that the groups discovery is
 done ignoring the true groups defined by the clinical outcome. The
 resulting clusters are not designed to provide valid information
-regarding a prognosis or prediction of response to therapy (20). A
+regarding a prognosis or prediction of response to therapy (18). A
 common argument in favor of clustering is that it identifies
 biologically distinct groups. However, the groups are identified using a
 statistical algorithm and the biological relevance is only considered
@@ -320,7 +347,7 @@ each of the 1000 gene expression features that I have, I can compute a
 t-statistic comparing the expression levels for responders versus
 non-responders. I then filter out the genes with t-test p-values greater
 than 0.0001, and use the remaining ones in a multivariable logistic
-regression model to predict response. (21) describes a novel approach to
+regression model to predict response. (19) describes a novel approach to
 filtering that is applied successfully to predict B-cell lymphoma
 subtypes using gene expression microarrays.
 
@@ -330,8 +357,8 @@ prediction of the clinical outcome, even if there are more features than
 samples. The special model includes a penalty component which encourages
 the model to throw out or downplay the impact of features that are not
 relevant. There are various types of penalty functions each with
-different properties, such as the LASSO (22), the ridge penalty (23),
-the elastic net (24), and others (19). Each type of penalty term
+different properties, such as the LASSO (20), the ridge penalty (21),
+the elastic net (22), and others (15). Each type of penalty term
 contains at least one tuning parameter, which may be pre-specified or
 selected using cross-validation.
 
@@ -339,9 +366,9 @@ Each type of approach has its merits, and within each class there are a
 variety of specific models to choose from. In real applications, it is
 hard to determine what method will work best in advance. Instead of
 selecting a single model to use, multiple models can be averaged to
-improve prediction (25). This approach, called Bayesian model averaging
+improve prediction (23). This approach, called Bayesian model averaging
 has proven successful in different applications, including prediction of
-cancer subtypes (26). It is more common, however, to try out various
+cancer subtypes (24). It is more common, however, to try out various
 different methods then select the one with the best performance. This is
 fine as long as the model selection is done entirely separated from the
 final validation sample. Leaking of information from the validation data
@@ -352,16 +379,63 @@ completely independently and locked down.
 \section{On what samples is the test being
 evaluated?}\label{on-what-samples-is-the-test-being-evaluated}
 
-Do: define the clinical use (27)
+Once the mathematical model is estimated and completely locked down
+based on the development sample, a study to definitively evaluate the
+locked-down test should be designed to address the clinical use. The key
+characteristic of the evaluation study or sample is that it is
+completely independent of the sample on which the test was developed.
+Once the test is defined and locked down, no information from the
+evaluation sample can be used to change the features of the test. The
+evaluation sample could be a randomly selected subgroup from the same
+parent study as the development set, or it could be from a separate
+study altogether. As long as the population and the intended clinical
+use are clearly defined, the evaluation can be done definitively.
 
-Study design: consider retrospective (28)
+A definitive evaluation can be done retrospectively, meaning that
+samples are selected from a study that has completed. The omics assay is
+then run on the archived samples and the locked down test is associated
+with the clinical outcomes, which have already been observed at the time
+of the assay measurement. This retrospective design can yield high
+quality evidence of the test's characteristics, if it is done carefully.
+It is imperative to develop a protocol for the study in which the omics
+test is clearly and completely defined, the main hypotheses are
+specified, and the assay standard operating procedures are detailed. The
+archived specimens need to come from a study or trial with a
+well-defined population under study, not a convenience sample. Sample
+size and power calculations should be done with the same rigor as they
+are in a clinical trial. Such a study, called
+``prospective-retrospective'', can yield a high degree of evidence in
+the evaluation of an omics-test, and with great efficiency. (25)
 
-Do: Design your study appropriately to answer the clinical question
-definitively (29--40)
+Alternatively, prospective studies can be used to evaluate an
+omics-based test by performing the assay at the start of the study and
+then following patients for their clinical outcome. Again, all of the
+key details need to be specified up front in the protocol. The details
+of the study design should be tailored to appropriately answer the
+clinical question definitively. Several review articles are available
+that describe the potential study designs for the evaluation of
+prognostic and predictive tests (26--29). Details of specific designs
+and statistical approaches are available for some Bayesian approaches
+(30,31), adaptive or sequential approaches (32,33), and standard
+frequentist approaches (34--36). This has been and continues to be an
+active research area in statistics, which means that a design can be
+found or developed to appropriately address the clinical question in the
+population of interest.
 
-Do: Power your trial appropriately (41,42)
-
-Don't: do partial resubstitution
+In the design, careful consideration should be given to the power and
+sample size. A prospective study in which patients may be undergoing
+painful biopsies or unnecessary treatment should not be done unless
+there is a high probability of definitively answering the scientific
+question. Likewise, precious archived specimens should not be wasted on
+a retrospective study that is under-powered. Most standard statistical
+tools for power analysis apply to prognostic tests, however predictive
+or therapy-guiding omics-based tests require a different approach. Many
+protocols of predictive tests are powered to detect the interaction
+effect between the treatment and the test (37). The existence of a
+treatment by test interaction is necessary but not sufficient for the
+test to be useful in guiding therapy (38). Tools for power and sample
+size analysis have been designed to specifically address the question of
+a qualitative interaction (39--41).
 
 \section{Are valid methods being used to evaluate the
 test?}\label{are-valid-methods-being-used-to-evaluate-the-test}
@@ -373,7 +447,7 @@ or statistics are used to measure this association? Often, investigators
 will report only the odds ratio (in the case of a binary clinical
 outcome) or the hazard ratio (for a time-to-event clinical outcome) for
 the omics test. The odds ratio or hazard ratio is insufficient to
-determine the clinical utility of an omics-based test (43). Ideally, a
+determine the clinical utility of an omics-based test (42). Ideally, a
 statistical method or set of statistical measures should be chosen to
 address the intended clinical use of the test.
 
@@ -391,7 +465,7 @@ be highly informative for it to be practice changing. For
 continuous-valued tests, extensions to these measures exist and can be
 visualized with the ROC curve. Furthermore, extensions also exist for
 time-to-event clinical outcomes like survival or progression free
-survival. (44) is the definitive reference for statistical measures for
+survival. (43) is the definitive reference for statistical measures for
 the evaluation of diagnostic and prognostic tests.
 
 In recent years, a number of potentially misleading statistical methods
@@ -403,9 +477,9 @@ whether a novel omics-based test adds value to standard clinical and
 pathological features. The NRI and IDI specifically evaluate whether the
 novel component enhances the differentiation of patients into risk
 groups. This does not address the question whether the novel component
-\emph{correctly} classifies patients (45,46). Others have noted
+\emph{correctly} classifies patients (44,45). Others have noted
 additional problems with the statistical operating characteristics of
-the method, most importantly, that it is not a valid measure (47--49).
+the method, most importantly, that it is not a valid measure (46--48).
 More fundamentally, it is not clear what clinical question this measure
 addresses; who cares if patients are classified differently if we don't
 know if they are classified correctly? Remember to keep in mind the
@@ -419,7 +493,7 @@ shortage of statistical methods for the evaluation of prognostic or
 predictive test, so one can be found or developed no matter what the
 clinical question is. For predictive omics-based tests to guide therapy,
 a rigorous approach to its evaluation has been described, along with
-statistical software for general use (50). This continues to be an
+statistical software for general use (49). This continues to be an
 active area of research in biostatistics.
 
 \section{Are the development and evaluation samples strictly
@@ -436,7 +510,7 @@ appear better than they truly are.
 
 Leaking information between samples can happen in subtle ways.
 Sometimes, part of the model development process is done on the
-validation data again. This is called partial resubstitution (20). For
+validation data again. This is called partial resubstitution (18). For
 example, a common model development approach is to first filter a subset
 of 50 genes from a larger set of 450,000 based on their observed
 association with the outcome. Then, the 50 genes are put into a
@@ -449,7 +523,7 @@ detect when the model development is more complex, and if
 cross-validation is used to estimate the performance.
 
 In settings where relatively few samples are available, cross-validation
-is an efficient and valid approach to estimating performance (51). The
+is an efficient and valid approach to estimating performance (50). The
 key point whether using the split sample approach or cross validation is
 that the entire model building process must be validated. Even informal
 checks of the model on the validation sample, such as viewing survival
@@ -460,7 +534,15 @@ process.
 
 \section{Concluding remarks}\label{concluding-remarks}
 
-Do: follow reporting criteria (1--3,52)
+The use of omics-based tests for prognosis, predicting, and therapy
+selection is steadily increasing in oncology. Careful evaluation of the
+quality of studies by consumers of the clinical oncology literature is
+imperative to provide a high level of patient care. Formal sets of
+reporting criteria exist for the producers of such literature (1--3,51)
+and they are useful for readers to be aware of, also. We hope that the
+discussion here has brought attention to the issues from the readers
+perspective and will help promote critical evaluation of the relevant
+literature.
 
 \section{References}\label{references}
 
@@ -532,166 +614,159 @@ high-throughput data. Nature Reviews Genetics. Nature Publishing Group;
 strong bias in performance estimates obtained by cross-validation. PloS
 one. Public Library of Science; 2014;9(6):e100335.
 
-15. McShane LM, Polley M-YC. Development of omics-based clinical tests
+15. Hastie T, Tibshirani R, Friedman J, Hastie T, Friedman J, Tibshirani
+R. The elements of statistical learning. Springer; 2009.
+
+16. Freidlin B, Jiang W, Simon R. The cross-validated adaptive signature
+design. Clinical Cancer Research. AACR; 2010;16(2):691--8.
+
+17. McShane LM, Polley M-YC. Development of omics-based clinical tests
 for prognosis and therapy selection: The challenge of achieving
 statistical robustness and clinical utility. Clinical Trials. SAGE
 Publications; 2013;10(5):653--65.
 
-16. Moons KG, Kengne AP, Woodward M, Royston P, Vergouwe Y, Altman DG,
-et al. Risk prediction models: I. development, internal validation, and
-assessing the incremental value of a new (bio) marker. Heart. BMJ
-Publishing Group Ltd; British Cardiovascular Society;
-2012;98(9):683--90.
-
-17. Moons KG, Kengne AP, Grobbee DE, Royston P, Vergouwe Y, Altman DG,
-et al. Risk prediction models: II. external validation, model updating,
-and impact assessment. Heart. BMJ Publishing Group Ltd; British
-Cardiovascular Society; 2012;heartjnl--l2011.
-
-18. Polley M-YC, Freidlin B, Korn EL, Conley BA, Abrams JS, McShane LM.
-Statistical and practical considerations for clinical evaluation of
-predictive biomarkers. Journal of the National Cancer Institute. Oxford
-University Press; 2013;105(22):1677--83.
-
-19. Hastie T, Tibshirani R, Friedman J, Hastie T, Friedman J, Tibshirani
-R. The elements of statistical learning. Springer; 2009.
-
-20. Simon R, Radmacher MD, Dobbin K, McShane LM. Pitfalls in the use of
+18. Simon R, Radmacher MD, Dobbin K, McShane LM. Pitfalls in the use of
 dNA microarray data for diagnostic and prognostic classification.
 Journal of the National Cancer Institute. Oxford University Press;
 2003;95(1):14--8.
 
-21. Bair E, Tibshirani R. Semi-supervised methods to predict patient
+19. Bair E, Tibshirani R. Semi-supervised methods to predict patient
 survival from gene expression data. PLoS biology. Public Library of
 Science; 2004;2(4):e108.
 
-22. Tibshirani R. Regression shrinkage and selection via the lasso.
+20. Tibshirani R. Regression shrinkage and selection via the lasso.
 Journal of the Royal Statistical Society Series B (Methodological).
 Blackwell Publishers; 1996;267--88.
 
-23. Hoerl AE, Kennard RW. Ridge regression: Biased estimation for
+21. Hoerl AE, Kennard RW. Ridge regression: Biased estimation for
 nonorthogonal problems. Technometrics. Taylor \& Francis Group;
 1970;12(1):55--67.
 
-24. Zou H, Hastie T. Regularization and variable selection via the
+22. Zou H, Hastie T. Regularization and variable selection via the
 elastic net. Journal of the Royal Statistical Society: Series B
 (Statistical Methodology). Blackwell Publishing Ltd; 2005;67(2):301--20.
 
-25. Hoeting JA, Madigan D, Raftery AE, Volinsky CT. Bayesian model
+23. Hoeting JA, Madigan D, Raftery AE, Volinsky CT. Bayesian model
 averaging: A tutorial. Statistical science. Institute of Mathematical
 Statistics; 1999;382--401.
 
-26. Yeung KY, Bumgarner RE, Raftery AE. Bayesian model averaging:
+24. Yeung KY, Bumgarner RE, Raftery AE. Bayesian model averaging:
 Development of an improved multi-class, gene selection and
 classification tool for microarray data. Bioinformatics. Oxford
 University Press; 2005;21(10):2394--402.
 
-27. Mandrekar SJ, Sargent DJ. Predictive biomarker validation in
-practice: Lessons from real trials. Clinical trials. SAGE Publications;
-2010;7(5):567--73.
-
-28. Simon RM, Paik S, Hayes DF. Use of archived specimens in evaluation
+25. Simon RM, Paik S, Hayes DF. Use of archived specimens in evaluation
 of prognostic and predictive biomarkers. Journal of the National Cancer
 Institute. Oxford University Press; 2009;101(21):1446--52.
 
-29. Freidlin B, Korn EL. Biomarker enrichment strategies: Matching trial
-design to biomarker credentials. Nature Reviews Clinical Oncology.
-Nature Publishing Group; 2014;11(2):81--90.
-
-30. Baker SG, Sargent DJ. Designing a randomized clinical trial to
+26. Baker SG, Sargent DJ. Designing a randomized clinical trial to
 evaluate personalized medicine: A new approach based on risk prediction.
 Journal of the National Cancer Institute. Oxford University Press; 2010;
 
-31. Baker SG, Kramer BS, Sargent DJ, Bonetti M. Biomarkers, subgroup
+27. Baker SG, Kramer BS, Sargent DJ, Bonetti M. Biomarkers, subgroup
 evaluation, and clinical trial design. Discovery medicine.
 2012;13(70):187--92.
 
-32. Brannath W, Zuber E, Branson M, Bretz F, Gallo P, Posch M, et al.
+28. Freidlin B, Korn EL. Biomarker enrichment strategies: Matching trial
+design to biomarker credentials. Nature Reviews Clinical Oncology.
+Nature Publishing Group; 2014;11(2):81--90.
+
+29. Mandrekar SJ, Sargent DJ. Clinical trial designs for predictive
+biomarker validation: Theoretical considerations and practical
+challenges. Journal of Clinical Oncology. American Society of Clinical
+Oncology; 2009;27(24):4027--34.
+
+30. Brannath W, Zuber E, Branson M, Bretz F, Gallo P, Posch M, et al.
 Confirmatory adaptive designs with bayesian decision tools for a
 targeted therapy in oncology. Statistics in medicine. Wiley Online
 Library; 2009;28(10):1445--63.
 
-33. Denne JS, Pennello G, Zhao L, Chang S-C, Althouse S. Identifying a
+31. Morita S, Yamamoto H, Sugitani Y. Biomarker-based bayesian
+randomized phase iI clinical trial design to identify a sensitive
+patient subpopulation. Statistics in medicine. John Wiley \& Sons, Ltd;
+2014;
+
+32. Freidlin B, Korn EL, Gray R. Marker sequential test (maST) design.
+Clinical Trials. SAGE Publications; 2013;1740774513503739.
+
+33. Jiang W, Freidlin B, Simon R. Biomarker-adaptive threshold design: A
+procedure for evaluating treatment with possible biomarker-defined
+subset effect. Journal of the National Cancer Institute. Oxford
+University Press; 2007;99(13):1036--43.
+
+34. Denne JS, Pennello G, Zhao L, Chang S-C, Althouse S. Identifying a
 subpopulation for a tailored therapy: Bridging clinical efficacy from a
 laboratory-developed assay to a validated in vitro diagnostic test kit.
 Statistics in Biopharmaceutical Research. Taylor \& Francis;
 2014;6(1):78--88.
 
-34. Eng KH. Randomized reverse marker strategy design for prospective
+35. Eng KH. Randomized reverse marker strategy design for prospective
 biomarker validation. Statistics in medicine. Wiley Online Library;
 2014;
-
-35. Freidlin B, Jiang W, Simon R. The cross-validated adaptive signature
-design. Clinical Cancer Research. AACR; 2010;16(2):691--8.
 
 36. Freidlin B, McShane LM, Polley M-YC, Korn EL. Randomized phase iI
 trial designs with biomarkers. Journal of Clinical Oncology. American
 Society of Clinical Oncology; 2012;30(26):3304--9.
 
-37. Freidlin B, Korn EL, Gray R. Marker sequential test (maST) design.
-Clinical Trials. SAGE Publications; 2013;1740774513503739.
+37. Peterson B, George SL. Sample size requirements and length of study
+for testing interaction in a 1\(\times\)\textless{} i\textgreater{}
+k\textless{}/i\textgreater{} factorial design when time-to-failure is
+the outcome. Controlled clinical trials. Elsevier; 1993;14(6):511--22.
 
-38. Jiang W, Freidlin B, Simon R. Biomarker-adaptive threshold design: A
-procedure for evaluating treatment with possible biomarker-defined
-subset effect. Journal of the National Cancer Institute. Oxford
-University Press; 2007;99(13):1036--43.
+38. Polley M-YC, Freidlin B, Korn EL, Conley BA, Abrams JS, McShane LM.
+Statistical and practical considerations for clinical evaluation of
+predictive biomarkers. Journal of the National Cancer Institute. Oxford
+University Press; 2013;105(22):1677--83.
 
-39. Mandrekar SJ, Sargent DJ. Clinical trial designs for predictive
-biomarker validation: Theoretical considerations and practical
-challenges. Journal of Clinical Oncology. American Society of Clinical
-Oncology; 2009;27(24):4027--34.
+39. Gail M, Simon R. Testing for qualitative interactions between
+treatment effects and patient subsets. Biometrics. Biometric Society;
+1985;361--72.
 
-40. Morita S, Yamamoto H, Sugitani Y. Biomarker-based bayesian
-randomized phase iI clinical trial design to identify a sensitive
-patient subpopulation. Statistics in medicine. John Wiley \& Sons, Ltd;
-2014;
+40. Bayman EÖ, Chaloner K, Cowles MK. Detecting qualitative interaction:
+A bayesian approach. Statistics in medicine. John Wiley \& Sons, Ltd.
+2010;29(4):455--63.
 
 41. Mackey HM, Bengtsson T. Sample size and threshold estimation for
 clinical trials with predictive biomarkers. Contemporary clinical
 trials. Elsevier; 2013;36(2):664--72.
 
-42. Peterson B, George SL. Sample size requirements and length of study
-for testing interaction in a 1\(\times\)\textless{} i\textgreater{}
-k\textless{}/i\textgreater{} factorial design when time-to-failure is
-the outcome. Controlled clinical trials. Elsevier; 1993;14(6):511--22.
-
-43. Pepe MS, Janes H, Longton G, Leisenring W, Newcomb P. Limitations of
+42. Pepe MS, Janes H, Longton G, Leisenring W, Newcomb P. Limitations of
 the odds ratio in gauging the performance of a diagnostic, prognostic,
 or screening marker. American journal of epidemiology. Oxford Univ
 Press; 2004;159(9):882--90.
 
-44. Pepe MS. The statistical evaluation of medical tests for
+43. Pepe MS. The statistical evaluation of medical tests for
 classification and prediction. Oxford University Press; 2003.
 
-45. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
+44. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
 not rely on integrated discrimination improvement and net
 reclassification index. Statistics in medicine. John Wiley \& Sons, Ltd;
 2013;
 
-46. Pepe MS. Problems with risk reclassification methods for evaluating
+45. Pepe MS. Problems with risk reclassification methods for evaluating
 prediction models. American journal of epidemiology. Oxford University
 Press; 2011;kwr013.
 
-47. Pepe MS, Janes H, Li CI. Net risk reclassification p values: Valid
+46. Pepe MS, Janes H, Li CI. Net risk reclassification p values: Valid
 or misleading? Journal of the National Cancer Institute. Oxford
 University Press; 2014;dju041.
 
-48. Kerr KF, Wang Z, Janes H, McClelland RL, Psaty BM, Pepe MS. Net
+47. Kerr KF, Wang Z, Janes H, McClelland RL, Psaty BM, Pepe MS. Net
 reclassification indices for evaluating risk prediction instruments: A
 critical review. Epidemiology. LWW; 2014;25(1):114--21.
 
-49. Hilden J. Commentary: On nRI, iDI, and Good-looking statistics
+48. Hilden J. Commentary: On nRI, iDI, and Good-looking statistics
 with nothing underneath. Epidemiology. LWW; 2014;25(2):265--7.
 
-50. Janes H, Brown MD, Huang Y, Pepe MS. An approach to evaluating and
+49. Janes H, Brown MD, Huang Y, Pepe MS. An approach to evaluating and
 comparing biomarkers for patient treatment selection. The international
 journal of biostatistics. 2014;10(1):99--121.
 
-51. Lee S. Mistakes in validating the accuracy of a prediction
+50. Lee S. Mistakes in validating the accuracy of a prediction
 classifier in high-dimensional butsmall-sample microarray data.
 Statistical methods in medical research. SAGE Publications; 2008;
 
-52. Bouwmeester W, Zuithoff NP, Mallett S, Geerlings MI, Vergouwe Y,
+51. Bouwmeester W, Zuithoff NP, Mallett S, Geerlings MI, Vergouwe Y,
 Steyerberg EW, et al. Reporting and methods in clinical prediction
 research: A systematic review. PLoS medicine. Public Library of Science;
 2012;9(5):e1001221.
