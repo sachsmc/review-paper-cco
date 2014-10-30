@@ -12,7 +12,7 @@
 
 %\author{Michael C Sachs (National Cancer Institute)}
 
-\date{\footnotesize October 2014. Incomplete Draft. Please do not cite without permission.}
+%\date{\footnotesize October 2014. Incomplete Draft. Please do not cite without permission.}
 \linespread{2}
 
 \begin{document}  
@@ -270,7 +270,7 @@ have absolute expression levels below some threshold. Quality control
 steps like this can ensure a more robust and reproducible development of
 the test.
 
-Even with care quality control and a locked down standard operating
+Even with careful quality control and a locked down standard operating
 procedure, it is difficult to completely eliminate the effects of
 technical factors on assay results. Therefore, when designing the
 development phase, be mindful not to confound such technical factors
@@ -337,7 +337,7 @@ for prediction of the clinical outcome, even if there are more features
 than study participants. The special model includes a penalty component
 which encourages the model to throw out or downplay the impact of
 features that are not relevant. There are various types of penalty
-functions each with different properties, such as the LASSO (18), the
+functions each with different properties, such as the lasso (18), the
 ridge penalty (19), the elastic net (20), and others (15). Each type of
 penalty term contains at least one tuning parameter, which may be
 pre-specified or selected using cross-validation.
@@ -457,16 +457,17 @@ non-recurrence (true negatives)? It is imperative to report both of
 these measures, also known as the sensitivity and specificity, because
 one can correctly predict all true positives simply by predicting that
 all cases are positive. Is the performance good enough to change
-clinical practice? Patients want to know what the likelihood of
-recurrence based on their test results; this is called the positive
+clinical practice? Patients want to know what is the likelihood of
+recurrence given their test results; this is called the positive
 predictive value. If the likelihood of recurrence is very low overall in
 the population, as it is in stage 1 breast cancer, then a new test must
 be highly informative for it to be practice changing. For
 continuous-valued tests, extensions to these measures exist and can be
-visualized with the ROC curve. Furthermore, extensions also exist for
-time-to-event clinical outcomes like survival or progression free
-survival. (43) is the definitive reference for statistical measures for
-the evaluation of diagnostic and prognostic tests.
+visualized with the receiver operating characteristic (ROC) curve.
+Furthermore, extensions also exist for time-to-event clinical outcomes
+like survival or progression free survival. (43) is the definitive
+reference for statistical measures for the evaluation of diagnostic and
+prognostic tests.
 
 In recent years, a number of potentially misleading statistical methods
 have crept into common usage. The net reclassification index (NRI) and
@@ -482,7 +483,7 @@ additional problems with the statistical operating characteristics of
 the method, most importantly, that it is not a valid measure (46--48).
 More fundamentally, it is not clear what clinical question this measure
 addresses; who cares if patients are classified differently if we don't
-know if they are classified correctly? Remember to keep in mind the
+know whether they are classified correctly? Remember to keep in mind the
 intended clinical use of a new test and you won't be fooled by such
 misleading approaches.
 
@@ -572,7 +573,8 @@ for Cancer Research; 2011;17(18):6012--20.
 5. Fleeman N, Bagust A, Beale S, Dwan K, Dickson R, Director L, et al.
 Pertuzumab in combination with trastuzumab and docetaxel for the
 treatment of hER2 positive metastatic or locally recurrent unresectable
-breast cancer: A single technology appraisal. 2013;
+breast cancer: A single technology appraisal. University of Liverpool:
+Reviews; Implementation Group; 2013.
 
 6. Sawyers CL. The cancer biomarker problem. Nature. Nature Publishing
 Group; 2008;452(7187):548--52.
@@ -599,11 +601,11 @@ of pathology. Elsevier; 2001;158(2):419--29.
 
 11. Pennello GA. Analytical and clinical evaluation of biomarkers
 assays: When are biomarkers ready for prime time? Clinical Trials. SAGE
-Publications; 2013;1740774513497541.
+Publications; 2013;10(5):653--65.
 
 12. Isler JA, Vesterqvist OE, Burczynski ME. Analytical validation of
-genotyping assays in the biomarker laboratory. Future Medicine Ltd;
-2007;
+genotyping assays in the biomarker laboratory. Pharmacogenomics. Future
+Medicine Ltd; 2007;8(4):339--52.
 
 13. Leek JT, Scharpf RB, Bravo HC, Simcha D, Langmead B, Johnson WE, et
 al. Tackling the widespread and critical impact of batch effects in
@@ -628,7 +630,7 @@ Science; 2004;2(4):e108.
 
 18. Tibshirani R. Regression shrinkage and selection via the lasso.
 Journal of the Royal Statistical Society Series B (Methodological).
-Blackwell Publishers; 1996;267--88.
+Blackwell Publishers; 1996;58(1):267--88.
 
 19. Hoerl AE, Kennard RW. Ridge regression: Biased estimation for
 nonorthogonal problems. Technometrics. Taylor \& Francis Group;
@@ -640,7 +642,7 @@ elastic net. Journal of the Royal Statistical Society: Series B
 
 21. Hoeting JA, Madigan D, Raftery AE, Volinsky CT. Bayesian model
 averaging: A tutorial. Statistical science. Institute of Mathematical
-Statistics; 1999;382--401.
+Statistics; 1999;14(4):382--401.
 
 22. Yeung KY, Bumgarner RE, Raftery AE. Bayesian model averaging:
 Development of an improved multi-class, gene selection and
@@ -653,7 +655,8 @@ Institute. Oxford University Press; 2009;101(21):1446--52.
 
 24. Baker SG, Sargent DJ. Designing a randomized clinical trial to
 evaluate personalized medicine: A new approach based on risk prediction.
-Journal of the National Cancer Institute. Oxford University Press; 2010;
+Journal of the National Cancer Institute. Oxford University Press;
+2010;102(23):1756--9.
 
 25. Baker SG, Kramer BS, Sargent DJ, Bonetti M. Biomarkers, subgroup
 evaluation, and clinical trial design. Discovery medicine.
@@ -676,10 +679,10 @@ Library; 2009;28(10):1445--63.
 29. Morita S, Yamamoto H, Sugitani Y. Biomarker-based bayesian
 randomized phase iI clinical trial design to identify a sensitive
 patient subpopulation. Statistics in medicine. John Wiley \& Sons, Ltd;
-2014;
+2014;33(23):4008--16.
 
 30. Freidlin B, Korn EL, Gray R. Marker sequential test (maST) design.
-Clinical Trials. SAGE Publications; 2013;1740774513503739.
+Clinical Trials. SAGE Publications; 2014;11(1):19--27.
 
 31. Jiang W, Freidlin B, Simon R. Biomarker-adaptive threshold design: A
 procedure for evaluating treatment with possible biomarker-defined
@@ -694,7 +697,7 @@ Statistics in Biopharmaceutical Research. Taylor \& Francis;
 
 33. Eng KH. Randomized reverse marker strategy design for prospective
 biomarker validation. Statistics in medicine. Wiley Online Library;
-2014;
+2014;33(18):3089--99.
 
 34. Freidlin B, McShane LM, Polley M-YC, Korn EL. Randomized phase iI
 trial designs with biomarkers. Journal of Clinical Oncology. American
@@ -720,7 +723,7 @@ University Press; 2013;105(22):1677--83.
 
 39. Gail M, Simon R. Testing for qualitative interactions between
 treatment effects and patient subsets. Biometrics. Biometric Society;
-1985;361--72.
+1985;41:361--72.
 
 40. Bayman EÖ, Chaloner K, Cowles MK. Detecting qualitative interaction:
 A bayesian approach. Statistics in medicine. John Wiley \& Sons, Ltd.
@@ -741,7 +744,7 @@ classification and prediction. Oxford University Press; 2003.
 44. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
 not rely on integrated discrimination improvement and net
 reclassification index. Statistics in medicine. John Wiley \& Sons, Ltd;
-2013;
+2013;33(19):3405--14.
 
 45. Pepe MS. Problems with risk reclassification methods for evaluating
 prediction models. American journal of epidemiology. Oxford University
@@ -749,7 +752,7 @@ Press; 2011;kwr013.
 
 46. Pepe MS, Janes H, Li CI. Net risk reclassification p values: Valid
 or misleading? Journal of the National Cancer Institute. Oxford
-University Press; 2014;dju041.
+University Press; 2014;106(4):10.1093/jnci/dju041.
 
 47. Kerr KF, Wang Z, Janes H, McClelland RL, Psaty BM, Pepe MS. Net
 reclassification indices for evaluating risk prediction instruments: A
@@ -764,7 +767,8 @@ journal of biostatistics. 2014;10(1):99--121.
 
 50. Lee S. Mistakes in validating the accuracy of a prediction
 classifier in high-dimensional butsmall-sample microarray data.
-Statistical methods in medical research. SAGE Publications; 2008;
+Statistical methods in medical research. SAGE Publications;
+2008;17(6):635--42.
 
 51. Bouwmeester W, Zuithoff NP, Mallett S, Geerlings MI, Vergouwe Y,
 Steyerberg EW, et al. Reporting and methods in clinical prediction

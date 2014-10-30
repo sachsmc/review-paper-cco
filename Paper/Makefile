@@ -47,5 +47,8 @@ tex:	clean $(TEX)
 %.pdf:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -s -S --latex-engine=pdflatex --template=latex.template --filter pandoc-citeproc --csl=$(CSL).csl --bibliography=$(BIB) -o $@ $<
 
+%.docx: %.tex
+	pandoc -o $@ $<
+
 clean:
 	rm -f *.html *.pdf *.tex	

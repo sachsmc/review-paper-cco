@@ -35,7 +35,7 @@ $endif$
 
 %\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
 
-\date{\footnotesize $date$. Incomplete Draft. Please do not cite without permission.}
+%\date{\footnotesize $date$. Incomplete Draft. Please do not cite without permission.}
 \linespread{2}
 
 \begin{document}  
