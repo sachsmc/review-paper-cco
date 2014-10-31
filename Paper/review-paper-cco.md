@@ -2,7 +2,10 @@
 title: Statistical Principles for Omics-based Clinical Trials
 author:
 - name: Michael C Sachs
-  affiliation: National Cancer Institute
+  affiliation: National Cancer Institute, Biometric Research Branch
+  address: 9609 Medical Center Drive, Room 5W114, MSC 9735, Bethesda, MD 20892-9735 
+  telephone: 240-276-6004
+  fax: 240-276-7888
   email: michael.sachs@nih.gov
 date: October 2014
 abstract: 'High-throughput technologies enable the measurement of a large number of molecular characteristics from a small tissue specimen. High-dimensional molecular information (referred to as omics data) offers the possibility of predicting the future outcome of a patient (prognosis) and predicting the likely response to a specific treatment (prediction). Embedded in the vast amount of data is the hope that there exists some signal that will enable practitioners to deliver therapy personalized to the molecular profile of a tumor, thereby improving health outcomes. The challenges are to determine that the omics assays are valid and reproducible in a clinical setting, to develop a valid and optimal omics-based test that algorithmically determines the optimal treatment regime, to evaluate that test in a powerful and unbiased manner, and finally to demonstrate clinical utility: that the test under study improves clinical outcome as compared to not using the test. We review the statistical considerations involved in each of these stages, specifically dealing with the challenges of high-dimensional, omics data.'

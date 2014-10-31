@@ -31,7 +31,11 @@ $endif$
 
 %\author{$for(author)$$author$$sep$\\$endfor$}
 
-\author{$for(author)$\Large $author.name$\vspace{0.05in} \\ \normalsize\emph{$author.affiliation$} \\ \footnotesize \url{maito:$author.email$}\vspace*{0.2in}\\ $sep$ \and $endfor$}
+\author{$for(author)$\Large $author.name$\vspace{0.05in} \\ \normalsize\emph{$author.affiliation$} \\ 
+\footnotesize $author.address$ \\
+\footnotesize Telephone: $author.telephone$ \\
+\footnotesize Fax: $author.fax$ \\
+ \url{maito:$author.email$}\vspace*{0.2in}\\ $sep$ \and $endfor$}
 
 %\author{$for(author)$$author.name$ ($author.affiliation$)$sep$ \and $endfor$}
 
