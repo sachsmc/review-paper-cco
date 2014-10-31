@@ -127,7 +127,11 @@ the individual's tissue. The assay generates lots of measurements, which
 we will refer to as \textbf{features}, and then fixed mathematical
 calculations are done to transform the many features into the single
 test value. Examples of such features are gene expression values,
-protein expression measurements, or genetic mutations.
+protein expression measurements, or genetic mutations. We use the term
+\textbf{specimens} to refer to individual patient tissues or fluids on
+which the assay would be run. We use the term \textbf{sample} in the
+statistical sense, meaning a group of individuals randomly selected from
+a population.
 
 Investigators determine the way that the mathematical calculations are
 done in the \textbf{development phase}. Often, there is a complete
@@ -207,8 +211,8 @@ or multiple disease types can be difficult, as the test must provide
 more information beyond that provided by standard clinical and
 pathological factors.
 
-\section{Are the analytical methods
-valid?}\label{are-the-analytical-methods-valid}
+\section{Are the assay methods and laboratory procedures
+valid?}\label{are-the-assay-methods-and-laboratory-procedures-valid}
 
 Analytical validation of an assay involves evaluating the performance of
 the measurement in terms of accuracy, bias, and precision under a
@@ -285,8 +289,8 @@ The development phase would then lead to what seems like an excellent
 predictor, except it is predicting the batch effect rather than the
 clinical outcome.
 
-\section{Are the statistical methods
-valid?}\label{are-the-statistical-methods-valid}
+\section{Are the statistical methods for test development
+appropriate?}\label{are-the-statistical-methods-for-test-development-appropriate}
 
 Once the analytical validity of the omics assay is established, the
 features are translated into a binary classification, a multi-category
@@ -349,12 +353,33 @@ model to use, multiple models can be averaged to improve prediction
 (21). This approach, called Bayesian model averaging has proven
 successful in different applications, including prediction of cancer
 subtypes (22). It is more common, however, to try out various different
-methods then select the one with the best performance. This is fine as
-long as the model selection is done entirely separately from the final
-validation sample. Leaking of information from the validation data into
-the model selection process can cause bias in insidious ways. Verify
-that the model selection and estimation process was done completely
-independently and locked down.
+methods then select the one that performs the best on a small subset of
+the development sample. This is fine as long as the model selection is
+done entirely separately from the final validation sample. Leaking of
+information from the validation data into the model selection process
+can cause bias in insidious ways. Verify that the model selection and
+estimation process was done completely independently and locked down.
+
+In many oncology settings, such as pediatric cancers, patients and
+specimens may be very sparse. It may be difficult to enroll sufficient
+subjects to develop an omics test and do preliminary validation on an
+independent sample. In that case, cross-validation can provide an
+unbiased estimate of prediction error, if done properly (15).
+Cross-validation refers to the idea that a model can be evaluated in the
+same sample in which it is developed. Similar to a split sample
+approach, in cross-validation only a small portion of the sample is left
+out at a time. The model is estimated on the remaining samples, and the
+performance is evaluated on the left-out independent portion. This
+process is repeated many times to get a more precise estimate of the
+performance. (23) describe a cross validated trial design tailored for
+sparse data settings.
+
+In doing cross-validation, it is important to validate the entire model
+estimation process, not only part of it. For that reason it is often
+best to avoid convoluted test development procedures so as not to
+mistakenly leak information from the validation data (24). More complex
+procedures can also lead to overfitting, in which the model identifies
+random noise in the data, rather than a true signal of clinical use.
 
 \section{How is the validation study
 designed?}\label{how-is-the-validation-study-designed}
@@ -385,7 +410,7 @@ well-defined population under study, not a convenience sample. Sample
 size and power calculations should be done with the same rigor as they
 are in a clinical trial. Such a study, called
 ``prospective-retrospective'', can yield a high degree of evidence in
-the evaluation of an omics-test, and with great efficiency. (23)
+the evaluation of an omics-test, and with great efficiency. (25)
 
 Alternatively, prospective studies can be used to evaluate an
 omics-based test by performing the assay at the start of the study and
@@ -394,33 +419,13 @@ key details need to be specified up front in the protocol. The details
 of the study design should be tailored to appropriately answer the
 clinical question definitively. Several review articles are available
 that describe the potential study designs for the evaluation of
-prognostic and predictive tests (24--27). Details of specific designs
+prognostic and predictive tests (26--29). Details of specific designs
 and statistical approaches are available for some Bayesian approaches
-(28,29), adaptive or sequential approaches (30,31), and standard
-frequentist approaches (32--34). This has been and continues to be an
+(30,31), adaptive or sequential approaches (32,33), and standard
+frequentist approaches (34--36). This has been and continues to be an
 active research area in statistics, which means that a design can be
 found or developed to appropriately address the clinical question in the
 population of interest.
-
-In many oncology settings, such as pediatric cancers, patients and
-specimens may be very sparse. It may be difficult to enroll sufficient
-subjects to develop and validate an omics test on independent samples.
-In that case, cross-validation can provide an unbiased estimate of
-prediction error, if done properly (15). Cross-validation refers to the
-idea that a model can be evaluated using the same data on which it is
-developed. Similar to a split sample approach, in cross-validation only
-a small portion of the sample is left out at a time. The model is
-estimated on the remaining samples, and the performance is evaluated on
-the left-out independent portion. This process is repeated many times to
-get a more precise estimate of the performance. (35) describe a cross
-validated trial design tailored for sparse data settings.
-
-In doing cross-validation, it is important to validate the entire model
-estimation process, not only part of it. For that reason it is often
-best to avoid convoluted test development procedures so as not to
-mistakenly leak information from the validation data (36). More complex
-procedures can also lead to overfitting, in which the model identifies
-random noise in the data, rather than a true signal of clinical use.
 
 In the design, careful consideration should be given to the power and
 sample size. A prospective study in which patients may be undergoing
@@ -437,68 +442,8 @@ test to be useful in guiding therapy (38). Tools for power and sample
 size analysis have been designed to specifically address the question of
 a qualitative interaction (39--41).
 
-\section{Do the statistical method address the clinical
-objective?}\label{do-the-statistical-method-address-the-clinical-objective}
-
-To assess the value of an omics-based test for prognosis or prediction
-we need to estimate the association between the test and the clinical
-outcome on an independent sample (the validation sample). What statistic
-or statistics are used to measure this association? Often, investigators
-will report only the odds ratio (in the case of a binary clinical
-outcome) or the hazard ratio (for a time-to-event clinical outcome) for
-the omics test. The odds ratio or hazard ratio is insufficient to
-determine the clinical utility of an omics-based test (42). Ideally, a
-statistical method or set of statistical measures should be chosen to
-address the intended clinical use of the test.
-
-For a prognostic test, how often does the test correctly predict
-recurrence (true positives) and how often does it correctly predict
-non-recurrence (true negatives)? It is imperative to report both of
-these measures, also known as the sensitivity and specificity, because
-one can correctly predict all true positives simply by predicting that
-all cases are positive. Is the performance good enough to change
-clinical practice? Patients want to know what is the likelihood of
-recurrence given their test results; this is called the positive
-predictive value. If the likelihood of recurrence is very low overall in
-the population, as it is in stage 1 breast cancer, then a new test must
-be highly informative for it to be practice changing. For
-continuous-valued tests, extensions to these measures exist and can be
-visualized with the receiver operating characteristic (ROC) curve.
-Furthermore, extensions also exist for time-to-event clinical outcomes
-like survival or progression free survival. (43) is the definitive
-reference for statistical measures for the evaluation of diagnostic and
-prognostic tests.
-
-In recent years, a number of potentially misleading statistical methods
-have crept into common usage. The net reclassification index (NRI) and
-its sibling, the integrated discrimination improvement (IDI), were
-designed to assess the added value of a new test to existing criteria:
-the incremental value. For example, it is often of interest to determine
-whether a novel omics-based test adds value to standard clinical and
-pathological features. The NRI and IDI specifically evaluate whether the
-novel component enhances the differentiation of patients into risk
-groups. This does not address the question whether the novel component
-\emph{correctly} classifies patients (44,45). Others have noted
-additional problems with the statistical operating characteristics of
-the method, most importantly, that it is not a valid measure (46--48).
-More fundamentally, it is not clear what clinical question this measure
-addresses; who cares if patients are classified differently if we don't
-know whether they are classified correctly? Remember to keep in mind the
-intended clinical use of a new test and you won't be fooled by such
-misleading approaches.
-
-As opposed to \emph{ad hoc} methods or misleading statistics, a good
-evaluation of an omics-based test takes a comprehensive and
-pre-specified approach to address the intended clinical use. There is no
-shortage of statistical methods for the evaluation of prognostic or
-predictive tests, so one can be found or developed no matter what the
-clinical question is. For predictive omics-based tests to guide therapy,
-a rigorous approach to its evaluation has been described, along with
-statistical software for general use (49). This continues to be an
-active area of research in biostatistics.
-
-\section{Are the development and evaluation samples strictly
-separated?}\label{are-the-development-and-evaluation-samples-strictly-separated}
+\section{Are the development and validation samples strictly
+separated?}\label{are-the-development-and-validation-samples-strictly-separated}
 
 This issue has come up in previous sections, yet this error occurs so
 frequently that it needs to be highlighted in its own section. The
@@ -524,7 +469,7 @@ detect when the model development is more complex, and if
 cross-validation is used to estimate the performance.
 
 In settings where relatively few samples are available, cross-validation
-is an efficient and valid approach to estimating performance (50). The
+is an efficient and valid approach to estimating performance (42). The
 key point whether using the split sample approach or cross validation is
 that the entire model building process must be validated. Even informal
 checks of the model on the validation sample, such as viewing survival
@@ -532,6 +477,66 @@ curve plots, prior to locking down the model can unknowingly cause bias.
 Therefore, once again we highlight the imperative that the validation
 sample be strictly separated from the \textbf{entire} model development
 process.
+
+\section{Are the statistical methods appropriate for test
+validation?}\label{are-the-statistical-methods-appropriate-for-test-validation}
+
+To assess the value of an omics-based test for prognosis or prediction
+we need to estimate the association between the test and the clinical
+outcome on an independent sample (the validation sample). What statistic
+or statistics are used to measure this association? Often, investigators
+will report only the odds ratio (in the case of a binary clinical
+outcome) or the hazard ratio (for a time-to-event clinical outcome) for
+the omics test. The odds ratio or hazard ratio is insufficient to
+determine the clinical utility of an omics-based test (43). Ideally, a
+statistical method or set of statistical measures should be chosen to
+address the intended clinical use of the test.
+
+For a prognostic test, how often does the test correctly predict
+recurrence (true positives) and how often does it correctly predict
+non-recurrence (true negatives)? It is imperative to report both of
+these measures, also known as the sensitivity and specificity, because
+one can correctly predict all true positives simply by predicting that
+all cases are positive. Is the performance good enough to change
+clinical practice? Patients want to know what is the likelihood of
+recurrence given their test results; this is called the positive
+predictive value. If the likelihood of recurrence is very low overall in
+the population, as it is in stage 1 breast cancer, then a new test must
+be highly informative for it to be practice changing. For
+continuous-valued tests, extensions to these measures exist and can be
+visualized with the receiver operating characteristic (ROC) curve.
+Furthermore, extensions also exist for time-to-event clinical outcomes
+like survival or progression free survival. (44) is the definitive
+reference for statistical measures for the evaluation of diagnostic and
+prognostic tests.
+
+In recent years, a number of potentially misleading statistical methods
+have crept into common usage. The net reclassification index (NRI) and
+its sibling, the integrated discrimination improvement (IDI), were
+designed to assess the added value of a new test to existing criteria:
+the incremental value. For example, it is often of interest to determine
+whether a novel omics-based test adds value to standard clinical and
+pathological features. The NRI and IDI specifically evaluate whether the
+novel component enhances the differentiation of patients into risk
+groups. This does not address the question whether the novel component
+\emph{correctly} classifies patients (45,46). Others have noted
+additional problems with the statistical operating characteristics of
+the method, most importantly, that it is not a valid measure (47--49).
+More fundamentally, it is not clear what clinical question this measure
+addresses; who cares if patients are classified differently if we don't
+know whether they are classified correctly? Remember to keep in mind the
+intended clinical use of a new test and you won't be fooled by such
+misleading approaches.
+
+As opposed to \emph{ad hoc} methods or misleading statistics, a good
+evaluation of an omics-based test takes a comprehensive and
+pre-specified approach to address the intended clinical use. There is no
+shortage of statistical methods for the evaluation of prognostic or
+predictive tests, so one can be found or developed no matter what the
+clinical question is. For predictive omics-based tests to guide therapy,
+a rigorous approach to its evaluation has been described, along with
+statistical software for general use (50). This continues to be an
+active area of research in biostatistics.
 
 \section{Concluding remarks}\label{concluding-remarks}
 
@@ -582,7 +587,7 @@ Group; 2008;452(7187):548--52.
 7. Iwamoto KS, Mizuno T, Ito T, Akiyama M, Takeichi N, Mabuchi K, et al.
 Feasibility of using decades-old archival tissues in molecular
 oncology/epidemiology. The American journal of pathology. American
-Society for Investigative Pathology; 1996;149(2):399.
+Society for Investigative Pathology; 1996;149(2):399--406.
 
 8. Srinivasan M, Sedmak D, Jewell S. Effect of fixatives and tissue
 processing on the content and integrity of nucleic acids. The American
@@ -649,67 +654,67 @@ Development of an improved multi-class, gene selection and
 classification tool for microarray data. Bioinformatics. Oxford
 University Press; 2005;21(10):2394--402.
 
-23. Simon RM, Paik S, Hayes DF. Use of archived specimens in evaluation
+23. Freidlin B, Jiang W, Simon R. The cross-validated adaptive signature
+design. Clinical Cancer Research. AACR; 2010;16(2):691--8.
+
+24. McShane LM, Polley M-YC. Development of omics-based clinical tests
+for prognosis and therapy selection: The challenge of achieving
+statistical robustness and clinical utility. Clinical Trials. SAGE
+Publications; 2013;10(5):653--65.
+
+25. Simon RM, Paik S, Hayes DF. Use of archived specimens in evaluation
 of prognostic and predictive biomarkers. Journal of the National Cancer
 Institute. Oxford University Press; 2009;101(21):1446--52.
 
-24. Baker SG, Sargent DJ. Designing a randomized clinical trial to
+26. Baker SG, Sargent DJ. Designing a randomized clinical trial to
 evaluate personalized medicine: A new approach based on risk prediction.
 Journal of the National Cancer Institute. Oxford University Press;
 2010;102(23):1756--9.
 
-25. Baker SG, Kramer BS, Sargent DJ, Bonetti M. Biomarkers, subgroup
+27. Baker SG, Kramer BS, Sargent DJ, Bonetti M. Biomarkers, subgroup
 evaluation, and clinical trial design. Discovery medicine.
 2012;13(70):187--92.
 
-26. Freidlin B, Korn EL. Biomarker enrichment strategies: Matching trial
+28. Freidlin B, Korn EL. Biomarker enrichment strategies: Matching trial
 design to biomarker credentials. Nature Reviews Clinical Oncology.
 Nature Publishing Group; 2014;11(2):81--90.
 
-27. Mandrekar SJ, Sargent DJ. Clinical trial designs for predictive
+29. Mandrekar SJ, Sargent DJ. Clinical trial designs for predictive
 biomarker validation: Theoretical considerations and practical
 challenges. Journal of Clinical Oncology. American Society of Clinical
 Oncology; 2009;27(24):4027--34.
 
-28. Brannath W, Zuber E, Branson M, Bretz F, Gallo P, Posch M, et al.
+30. Brannath W, Zuber E, Branson M, Bretz F, Gallo P, Posch M, et al.
 Confirmatory adaptive designs with bayesian decision tools for a
 targeted therapy in oncology. Statistics in medicine. Wiley Online
 Library; 2009;28(10):1445--63.
 
-29. Morita S, Yamamoto H, Sugitani Y. Biomarker-based bayesian
+31. Morita S, Yamamoto H, Sugitani Y. Biomarker-based bayesian
 randomized phase iI clinical trial design to identify a sensitive
 patient subpopulation. Statistics in medicine. John Wiley \& Sons, Ltd;
 2014;33(23):4008--16.
 
-30. Freidlin B, Korn EL, Gray R. Marker sequential test (maST) design.
+32. Freidlin B, Korn EL, Gray R. Marker sequential test (maST) design.
 Clinical Trials. SAGE Publications; 2014;11(1):19--27.
 
-31. Jiang W, Freidlin B, Simon R. Biomarker-adaptive threshold design: A
+33. Jiang W, Freidlin B, Simon R. Biomarker-adaptive threshold design: A
 procedure for evaluating treatment with possible biomarker-defined
 subset effect. Journal of the National Cancer Institute. Oxford
 University Press; 2007;99(13):1036--43.
 
-32. Denne JS, Pennello G, Zhao L, Chang S-C, Althouse S. Identifying a
+34. Denne JS, Pennello G, Zhao L, Chang S-C, Althouse S. Identifying a
 subpopulation for a tailored therapy: Bridging clinical efficacy from a
 laboratory-developed assay to a validated in vitro diagnostic test kit.
 Statistics in Biopharmaceutical Research. Taylor \& Francis;
 2014;6(1):78--88.
 
-33. Eng KH. Randomized reverse marker strategy design for prospective
+35. Eng KH. Randomized reverse marker strategy design for prospective
 biomarker validation. Statistics in medicine. Wiley Online Library;
 2014;33(18):3089--99.
 
-34. Freidlin B, McShane LM, Polley M-YC, Korn EL. Randomized phase iI
+36. Freidlin B, McShane LM, Polley M-YC, Korn EL. Randomized phase iI
 trial designs with biomarkers. Journal of Clinical Oncology. American
 Society of Clinical Oncology; 2012;30(26):3304--9.
-
-35. Freidlin B, Jiang W, Simon R. The cross-validated adaptive signature
-design. Clinical Cancer Research. AACR; 2010;16(2):691--8.
-
-36. McShane LM, Polley M-YC. Development of omics-based clinical tests
-for prognosis and therapy selection: The challenge of achieving
-statistical robustness and clinical utility. Clinical Trials. SAGE
-Publications; 2013;10(5):653--65.
 
 37. Peterson B, George SL. Sample size requirements and length of study
 for testing interaction in a 1 x k factorial design when time-to-failure
@@ -733,42 +738,42 @@ A bayesian approach. Statistics in medicine. John Wiley \& Sons, Ltd.
 clinical trials with predictive biomarkers. Contemporary clinical
 trials. Elsevier; 2013;36(2):664--72.
 
-42. Pepe MS, Janes H, Longton G, Leisenring W, Newcomb P. Limitations of
+42. Lee S. Mistakes in validating the accuracy of a prediction
+classifier in high-dimensional butsmall-sample microarray data.
+Statistical methods in medical research. SAGE Publications;
+2008;17(6):635--42.
+
+43. Pepe MS, Janes H, Longton G, Leisenring W, Newcomb P. Limitations of
 the odds ratio in gauging the performance of a diagnostic, prognostic,
 or screening marker. American journal of epidemiology. Oxford Univ
 Press; 2004;159(9):882--90.
 
-43. Pepe MS. The statistical evaluation of medical tests for
+44. Pepe MS. The statistical evaluation of medical tests for
 classification and prediction. Oxford University Press; 2003.
 
-44. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
+45. Hilden J, Gerds TA. A note on the evaluation of novel biomarkers: Do
 not rely on integrated discrimination improvement and net
 reclassification index. Statistics in medicine. John Wiley \& Sons, Ltd;
 2013;33(19):3405--14.
 
-45. Pepe MS. Problems with risk reclassification methods for evaluating
+46. Pepe MS. Problems with risk reclassification methods for evaluating
 prediction models. American journal of epidemiology. Oxford University
 Press; 2011;173(11):1327--35.
 
-46. Pepe MS, Janes H, Li CI. Net risk reclassification p values: Valid
+47. Pepe MS, Janes H, Li CI. Net risk reclassification p values: Valid
 or misleading? Journal of the National Cancer Institute. Oxford
 University Press; 2014;106(4):doi:10.1093/jnci/dju041.
 
-47. Kerr KF, Wang Z, Janes H, McClelland RL, Psaty BM, Pepe MS. Net
+48. Kerr KF, Wang Z, Janes H, McClelland RL, Psaty BM, Pepe MS. Net
 reclassification indices for evaluating risk prediction instruments: A
 critical review. Epidemiology. LWW; 2014;25(1):114--21.
 
-48. Hilden J. Commentary: On nRI, iDI, and Good-looking statistics
+49. Hilden J. Commentary: On nRI, iDI, and Good-looking statistics
 with nothing underneath. Epidemiology. LWW; 2014;25(2):265--7.
 
-49. Janes H, Brown MD, Huang Y, Pepe MS. An approach to evaluating and
+50. Janes H, Brown MD, Huang Y, Pepe MS. An approach to evaluating and
 comparing biomarkers for patient treatment selection. The international
 journal of biostatistics. 2014;10(1):99--121.
-
-50. Lee S. Mistakes in validating the accuracy of a prediction
-classifier in high-dimensional butsmall-sample microarray data.
-Statistical methods in medical research. SAGE Publications;
-2008;17(6):635--42.
 
 51. Bouwmeester W, Zuithoff NP, Mallett S, Geerlings MI, Vergouwe Y,
 Steyerberg EW, et al. Reporting and methods in clinical prediction
