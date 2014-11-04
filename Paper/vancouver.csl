@@ -53,7 +53,7 @@
   </locale>
   <macro name="author">
     <names variable="author">
-      <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always"/>
+      <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always" et-al-min="7" et-al-use-first="3"/>
       <label form="long" prefix=", "/>
       <substitute>
         <names variable="editor"/>
@@ -76,15 +76,14 @@
   <macro name="publisher">
     <group delimiter=": " suffix=";">
       <choose>
-        <if type="thesis">
-          <text variable="publisher-place" prefix="[" suffix="]"/>
+        <if type="book" match="none">
+          <text/>
         </if>
-        <else-if type="speech"/>
         <else>
-          <text variable="publisher-place"/>
-        </else>
+		<text variable="publisher"/>
+		</else>
       </choose>
-      <text variable="publisher"/>
+
     </group>
   </macro>
   <macro name="access">
@@ -112,14 +111,14 @@
   </macro>
   <macro name="container-title">
     <choose>
-      <if type="article-journal article-magazine chapter paper-conference article-newspaper" match="any">
-        <group suffix="." delimiter=" ">
+      <if type="article-journal article-magazine article chapter paper-conference article-newspaper" match="any">
+        <group suffix="" delimiter=" ">
           <choose>
             <if type="article-journal">
               <text variable="container-title" form="short" strip-periods="true"/>
             </if>
             <else>
-              <text variable="container-title" strip-periods="true"/>
+              <text variable="container-title" form="short" strip-periods="true"/>
             </else>
           </choose>
           <choose>
@@ -130,30 +129,8 @@
         </group>
         <text macro="edition" prefix=" "/>
       </if>
-      <!--add event-name and event-place once they become available-->
-      <else-if type="bill legislation" match="any">
-        <group delimiter=", ">
-          <group delimiter=". ">
-            <text variable="container-title"/>
-            <group delimiter=" ">
-              <text term="section" form="short" text-case="capitalize-first"/>
-              <text variable="section"/>
-            </group>
-          </group>
-          <text variable="number"/>
-        </group>
-      </else-if>
-      <else-if type="speech">
-        <group delimiter=": " suffix=";">
-          <group delimiter=" ">
-            <text variable="genre" text-case="capitalize-first"/>
-            <text term="presented at"/>
-          </group>
-          <text variable="event"/>
-        </group>
-      </else-if>
       <else>
-        <text variable="container-title" suffix="."/>
+        <text variable="container-title" form="short" strip-periods="true" suffix=""/>
       </else>
     </choose>
   </macro>
