@@ -29,6 +29,7 @@ $if(title)$
 \title{\bigskip \bigskip $title$}
 $endif$ 
 
+
 %\author{$for(author)$$author$$sep$\\$endfor$}
 
 \author{$for(author)$\Large $author.name$\vspace{0.05in} \\ \normalsize\emph{$author.affiliation$} \\ 
@@ -68,6 +69,11 @@ $if(abstract)$
 $if(keywords)$
 \smallskip
 \noindent \textbf{Keywords.} $keywords$
+$endif$
+
+$if(shorttitle)$
+\smallskip
+\noindent \textbf{Running title.} \textit{$shorttitle$}
 $endif$
 
 \end{abstract}
