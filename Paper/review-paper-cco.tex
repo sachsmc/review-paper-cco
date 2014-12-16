@@ -63,7 +63,7 @@ data.
 Omics technologies that generate a large amount of molecular data about
 biospecimens have the potential to provide accurate predictions of a
 patient's prognosis and predictions of their response to a specific
-treatment regime. The idea of omics-based biomarkers is that distinct
+treatment regime. The idea of omics-based tests is that distinct
 subgroups of patients can be identified using multi-dimensional
 molecular data and therefore treatment decisions can be personalized to
 that subgroup. An omics-based test can guide the decisions to treat or
@@ -110,11 +110,11 @@ reducing the high-dimensional data into a one-dimensional quantity that
 will be used to make a decision. This one-dimensional quantity is often
 a risk score: an estimate of the probability of a specific clinical
 outcome. It is necessary to establish the clinical validity of this risk
-score, that is, to demonstrate that the risk score is independently
-associated with clinical outcome. Care must be taken to completely
-separate the development of the risk score from the evaluation,
-otherwise estimates can be optimistically biased. Finally, the risk
-score must be translated into a binary decision, often using a
+score, that is, to demonstrate that the risk score is independently and
+strongly associated with clinical outcome. Care must be taken to
+completely separate the development of the risk score from the
+evaluation, otherwise estimates can be optimistically biased. Finally,
+the risk score must be translated into a binary decision, often using a
 threshold. It remains to demonstrate that the use of the test to make
 this decision improves patient outcomes.
 
@@ -242,8 +242,8 @@ the final signature alone. However, prior to developing the signature,
 one must develop detailed standard operating procedures for specimen
 handling and processing to ensure a baseline level of validity.
 
-Study reports must state what type of specimens were used and whether
-the test be applied to formalin-fixed paraffin embedded (FFPE) or only
+Study reports must state what type of specimens are used and whether the
+test is applied to formalin-fixed paraffin embedded (FFPE) or only
 fresh-frozen tissue. Most omics-based assays require a minimum
 percentage of tumor to be successful. A report should clearly state what
 criteria were used to screen tissue specimens prior to running the
@@ -288,12 +288,11 @@ procedures. Features that do not pass the pre-specified quality metrics
 should be removed from consideration from the final test. Note that this
 feature processing step does not involve any clinical outcome
 measurements. As a concrete example, in the development of the gene
-expression based test EndoPredict, investigators may chose to exclude
-probe locations that have a dynamic range less than 2, probes for which
-fewer than 1\% of the specimens had calls, and probes whose 90th
-percentile was less than 350 units (8). Quality control steps of this
-nature can ensure a more robust and reproducible development of the
-test.
+expression based test EndoPredict, investigators chose to exclude probe
+locations that have a dynamic range less than 2, probes for which fewer
+than 1\% of the specimens had calls, and probes whose 90th percentile
+was less than 350 units (8). Quality control steps of this nature can
+ensure a more robust and reproducible development of the test.
 
 Even with careful quality control and a locked down standard operating
 procedure, it is difficult to completely eliminate the effects of
@@ -362,8 +361,8 @@ Regularization is an approach in which all of the features in
 consideration are entered into a special multivariable statistical model
 for prediction of the clinical outcome, even if there are more features
 than study participants. The special model includes a penalty component
-which encourages the model to throw out or downplay the impact of
-features that are not relevant. There are various types of penalty
+which encourages the model to remove completely or downplay the impact
+of features that are not relevant. There are various types of penalty
 functions each with different properties, such as the lasso (23), the
 ridge penalty (24), the elastic net (25), and others (20). Each type of
 penalty term contains at least one tuning parameter, which may be
@@ -375,7 +374,7 @@ what method will work best in advance. Instead of selecting a single
 model to use, multiple models can be averaged to improve prediction
 (26). This approach, called Bayesian model averaging, has proven
 successful in different applications, including prediction of cancer
-subtypes (27). It is more common, however, to try various different
+subtypes (27). It is more common, however, to try several different
 methods then select the one that performs the best on a small subset of
 the development sample. This is appropriate as long as the model
 selection is done entirely separately from the final validation sample.
@@ -391,7 +390,7 @@ Cross-validation refers to the idea that a model can be evaluated in the
 same sample in which it is developed. Similar to a split sample
 approach, in cross-validation only a small portion of the sample is left
 out at a time. The model is estimated on the remaining samples, and the
-performance is evaluated on the left-out independent portion. This
+performance is evaluated on the left out independent portion. This
 process is repeated many times to get a more precise estimate of the
 performance. (28) describe a cross validated trial design tailored for
 sparse data settings.
@@ -461,7 +460,7 @@ tools for power analysis apply to prognostic tests, however predictive
 or therapy-guiding omics-based tests require a different approach. Many
 protocols for predictive tests are powered to detect the interaction
 effect between the treatment and the test (42). The existence of a
-treatment by test interaction is necessary but not sufficient for the
+treatment-by-test-interaction is necessary but not sufficient for the
 test to be useful in guiding therapy (43). Tools for power and sample
 size analysis have been designed to specifically address the question of
 a qualitative interaction (44--46).
@@ -692,9 +691,9 @@ statistical robustness and clinical utility. Clin Trials
 of prognostic and predictive biomarkers. J Natl Cancer Inst
 2009;101(21):1446--52.
 
-31. Baker SG, Sargent DJ. Designing a randomized clinical trial to
-evaluate personalized medicine: A new approach based on risk prediction.
-J Natl Cancer Inst 2010;102(23):1756--9.
+31. Sargent DJ, Conley BA, Allegra C, Collette L. Clinical trial designs
+for predictive marker validation in cancer treatment trials. Journal of
+Clinical Oncology 2005;23(9):2020--7.
 
 32. Baker SG, Kramer BS, Sargent DJ, Bonetti M. Biomarkers, subgroup
 evaluation, and clinical trial design. Discov Med 2012;13(70):187--92.
