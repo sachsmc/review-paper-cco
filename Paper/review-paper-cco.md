@@ -25,6 +25,11 @@ The long road to implementing a test in a practice starts with analytical valida
 
 The following sections specify questions to be considered while reading a report of an omics-based clinical study. We review the importance of such questions, and common pitfalls to watch for. In the planning or reporting of an omics-based trial, answers to these questions should be made clear to the reader. Formal efforts to guide reporting have been developed, such as the REMARK checklist [@altman2012reporting], the GRIPS statement [@janssens2011strengthening], and an omics checklist [@mcshane2013criteria]. 
 
+![Schematic illustrating the omics test development process. ](figure1-2014-12-15.png)
+
+![Schematic illustrating the types of studies involved in omics test assay validation, test development, and validation. ](figure2-2014-12-16.png)
+
+
 Terminology
 ==============
 An omics-based test, or simply an **omics test**, is a mapping from the set of features on the omics assay to a single number. This number can be a binary value, such as good or poor prognosis, or it can provide a continuous scale, such as a risk score. It must be feasible to perform the test on an individual patient basis, by measuring the omics assay on the individual's tissue. The assay generates a multitude of measurements, which we will refer to as **features**, and then fixed mathematical calculations are done to transform the many features into the single test value. Examples of such features are gene expression values, protein expression measurements, or genetic mutations. We use the term **specimens** to refer to individual patient tissues or fluids on which the assay would be run. We use the term **sample** in the statistical sense, meaning a group of individuals randomly selected from a population. 

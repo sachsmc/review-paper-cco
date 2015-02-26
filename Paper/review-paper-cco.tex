@@ -3,6 +3,16 @@
 \usepackage[margin=35mm]{geometry}
 
 
+\usepackage{graphicx}
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 
 \title{\bigskip \bigskip Statistical Principles for Omics-based Clinical Trials}
 
@@ -125,6 +135,19 @@ reporting of an omics-based trial, answers to these questions should be
 made clear to the reader. Formal efforts to guide reporting have been
 developed, such as the REMARK checklist (1), the GRIPS statement (2),
 and an omics checklist (3).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure1-2014-12-15.png}
+\caption{Schematic illustrating the omics test development process.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure2-2014-12-16.png}
+\caption{Schematic illustrating the types of studies involved in omics
+test assay validation, test development, and validation.}
+\end{figure}
 
 \section{Terminology}\label{terminology}
 

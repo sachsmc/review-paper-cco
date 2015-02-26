@@ -40,7 +40,9 @@ tex:	clean $(TEX)
 %.html:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w html -S --template=html.template --css=style.css --filter pandoc-citeproc --csl=$(CSL).csl --bibliography=$(BIB) -o $@ $<
 	cp $@ ../index.html
-
+	cp figure1-2014-12-15.png ..
+	cp figure2-2014-12-16.png ..
+	
 %.tex:	%.md
 	pandoc -r markdown+simple_tables+table_captions+yaml_metadata_block -w latex -s -S --latex-engine=pdflatex --template=latex.template --filter pandoc-citeproc --csl=$(CSL).csl --bibliography=$(BIB) -o $@ $<
 
